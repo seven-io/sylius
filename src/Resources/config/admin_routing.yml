@@ -1,0 +1,21 @@
+sms77_admin_dashboard:
+  resource: |
+    alias: sms77.configuration
+    path: /sms77/dashboard
+    section: admin
+  prefix: /admin
+  methods: [GET]
+  defaults:
+    _controller: Sms77SyliusPlugin:Admin:dashboard
+    _sylius:
+      template: Sms77SyliusPlugin:admin:dashboard.html.twig
+      form: Sms77SyliusPlugin\Form\Type\ConfigurationType
+  type: sylius.resource
+
+sms77_admin_dashboard_submit:
+  path: /admin/sms77/dashboard
+  methods: [POST]
+  defaults:
+    _controller: Sms77SyliusPlugin:Admin:submit
+    _sylius:
+      form: Sms77SyliusPlugin\Form\Type\ConfigurationType

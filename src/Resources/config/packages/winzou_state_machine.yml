@@ -1,0 +1,7 @@
+winzou_state_machine:
+  sylius_shipment:
+    callbacks:
+      after:
+        ship:
+          do: ["@sms77.client", "sms"]
+          args: ["object"]

@@ -1,0 +1,8 @@
+#sms77_sylius_admin:
+    #resource: "@Sms77SyliusPlugin/Resources/config/admin_routing.yml"
+
+sms77_sylius_plugin:
+    resource: "@Sms77SyliusPlugin/Resources/config/admin_routing.yml"
+    prefix: /admin
+    #requirements:
+    #   _locale: ^[a-z]{2}(?:_[A-Z]{2})?$

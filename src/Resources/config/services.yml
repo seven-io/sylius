@@ -1,0 +1,26 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  sms77.listener.admin.menu_builder:
+    class: Sms77\SyliusPlugin\Menu\AdminMenuListener
+    tags:
+      - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+
+  sms77.configuration.form.type:
+    class: Sms77\SyliusPlugin\Form\Type\ConfigurationType
+    tags:
+      - { name: form.type }
+    arguments: ['%sms77.model.configuration.class%', ['sylius']]
+
+  sms77.configuration_translation.form.type:
+    class: Sms77\SyliusPlugin\Form\Type\ConfigurationTranslationType
+    tags:
+      - { name: form.type }
+    arguments: ['%sms77.model.configuration_translation.class%', ['sylius']]
+
+  sms77.client:
+    class: Sms77\SyliusPlugin\Api\Client
+    arguments: ['@sms77.repository.configuration']
