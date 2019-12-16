@@ -55,7 +55,7 @@ class Client
     private function initApi(): ?ApiClient {
         $apiKey = $this->configuration->getApiKey();
 
-        return isset($apiKey) ? new ApiClient($this->configuration->getApiKey()) : null;
+        return isset($apiKey) ? new ApiClient($this->configuration->getApiKey(), 'sylius') : null;
     }
 
     private function orderToPhone(OrderInterface $order): ?string {
