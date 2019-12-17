@@ -40,7 +40,13 @@ class Client
         $client = $this->initApi();
 
         if (null !== $to && null !== $client) {
-            $client->sms($to,  $text);
+            $extras = [];
+
+            if (null !== $this->configuration->getFrom()) {
+                $extras['from'] = $this->configuration->getFrom();
+            }
+
+            $client->sms($to,  $text, $extras);
         }
     }
 
