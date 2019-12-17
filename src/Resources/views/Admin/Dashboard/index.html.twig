@@ -1,0 +1,43 @@
+{% form_theme form '@SyliusAdmin/Form/theme.html.twig' %}
+
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% block title %}{{ 'sms77_api.dashboard.title'|trans }}{% endblock %}
+
+{% block content %}
+    <h1 style="display: inline;">{{ 'sms77_api.dashboard.title'|trans }}</h1>
+
+    <button form="sms77_configuration" class="ui labeled icon button primary right floated" type="submit">
+        <i class="icon edit"></i>
+        {{ 'sylius.form.review.submit'|trans }}
+    </button>
+
+    <div class="ui divider"></div>
+
+    {{ form_errors(form) }}
+
+    {{ form_start(form, {
+        'action': path("sms77_admin_dashboard_submit"),
+        'attr': {
+            'class': 'ui loadable form',
+            'novalidate': 'novalidate',
+            "id": "sms77_configuration"
+        }
+    }) }}
+
+    {{ form_row(form.apiKey) }}
+
+    <h2>{{ 'sms77_api.dashboard.events'|trans }}</h2>
+
+    {{ form_row(form.onShipping) }}
+
+    <h2>{{ 'sylius.ui.translations' | trans }}</h2>
+
+    {{ translationForm(form.translations) }}
+
+    {{ form_row(form._token) }}
+
+    {{ form_end(form, {'render_rest': true}) }}
+{% endblock %}

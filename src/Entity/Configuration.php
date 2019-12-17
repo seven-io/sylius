@@ -29,22 +29,21 @@ class Configuration implements ResourceInterface, TranslatableInterface
 
     /**
      * @Column(type="string", nullable=true)
-     * @var string | null
+     * @var string | null $apiKey
      */
     protected $apiKey;
-
 
     /**
      * @Column(type="integer")
      * @Id()
      * @GeneratedValue()
-     * @var integer
+     * @var integer $id
      */
     protected $id;
 
     /**
      * @Column(type="boolean")
-     * @var bool
+     * @var bool $onShipping
      */
     protected $onShipping;
 
@@ -56,6 +55,16 @@ class Configuration implements ResourceInterface, TranslatableInterface
     public function setApiKey(?string $apiKey): void
     {
         $this->apiKey = $apiKey;
+    }
+
+    public function setFrom(?string $from): void
+    {
+        $this->getTranslation()->setFrom($from);
+    }
+
+    public function getFrom(): ?string
+    {
+        return $this->getTranslation()->getFrom();
     }
 
     public function getId(): ?int

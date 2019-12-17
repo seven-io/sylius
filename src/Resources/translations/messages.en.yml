@@ -1,5 +1,11 @@
 sms77_api:
   dashboard:
+    apiKey: API key
     apiKeyNeeded: An API key is needed in order to send SMS. Get yours now at http://sms77.io.
     configMissing: No configuration has been found. Make sure to load the fixtures as described in the README.md.
     configUpdated: The configuration has been successfully updated.
+    from: From (sender)
+    shippingText: Shipping text
+    title: Sms77.io plugin
+    events: Events
+    useDefault: Use gateway default

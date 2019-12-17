@@ -18,7 +18,7 @@ class ConfigurationType extends AbstractResourceType
     {
         $builder
             ->add('apiKey', TextType::class, [
-                "label" => false
+                'label' => 'sms77_api.dashboard.apiKey'
             ])
             ->add('onShipping', CheckboxType::class)
             ->add('translations', ResourceTranslationsType::class, [

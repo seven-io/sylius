@@ -21,10 +21,10 @@ class ConfigurationFixtures implements FixtureInterface
     {
         $conf = new Configuration();
 
-        $conf->setOnShipping(true);
+        $conf->setOnShipping(false);
 
-        $conf->addTranslation($this->makeTranslation("Your order has just been handed over to our logistics partner. It should already arrive in a few days. Best regards!", "en_US"));
-        $conf->addTranslation($this->makeTranslation("Ihre Bestellung wurde soeben an unseren Logistikpartner übergeben. In wenigen Tagen schon sollte Ihre Bestellung bei Ihnen eintreffen. Beste Grüße!", "de_DE"));
+        $conf->addTranslation($this->makeTranslation('Your order has just been handed over to our logistics partner. It should already arrive in a few days. Best regards!', 'en_US'));
+        $conf->addTranslation($this->makeTranslation('Ihre Bestellung wurde soeben an unseren Logistikpartner übergeben. In wenigen Tagen schon sollte Ihre Bestellung bei Ihnen eintreffen. Beste Grüße!', 'de_DE'));
 
         $manager->persist($conf);
         $manager->flush();

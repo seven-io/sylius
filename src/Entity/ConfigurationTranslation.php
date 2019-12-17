@@ -18,6 +18,12 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 class ConfigurationTranslation extends AbstractTranslation implements ResourceInterface
 {
     /**
+     * @Column(type="string")
+     * @var string $from
+     */
+    private $from;
+
+    /**
      * @Column(type="integer")
      * @Id()
      * @GeneratedValue()
@@ -27,9 +33,19 @@ class ConfigurationTranslation extends AbstractTranslation implements ResourceIn
 
     /**
      * @Column(type="string")
-     * @var string
+     * @var string $shippingText
      */
     private $shippingText;
+
+    public function getFrom(): string
+    {
+        return $this->from;
+    }
+
+    public function setFrom(string $from): void
+    {
+        $this->from = $from;
+    }
 
     public function getId(): int
     {

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Sms77\SyliusPlugin\Controller;
@@ -56,6 +55,11 @@ final class AdminController extends AbstractController
                 if (array_key_exists('shippingText', $translations)) {
                     $config->setCurrentLocale($localeCode);
                     $config->setShippingText($translations['shippingText']);
+                }
+
+                if (array_key_exists('from', $translations)) {
+                    $config->setCurrentLocale($localeCode);
+                    $config->setFrom($translations['from']);
                 }
             }
         }
