@@ -19,7 +19,7 @@ final class AdminMenuListener
         $newSubmenu
             ->addChild('new-subitem')
             ->setLabel('Dashboard')
-            ->setUri('/admin/sms77/dashboard')
+            ->setUri('sms77/dashboard')
         ;
     }
 }
