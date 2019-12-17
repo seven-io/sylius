@@ -14,9 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class AdminController extends AbstractController
 {
-    private function _getConfig(): Configuration {
+    private function _getConfig(): ?Configuration
+    {
         /* @var RepositoryInterface $repo */
-        $repo = $this->get("sms77.repository.configuration");
+        $repo = $this->get('sms77.repository.configuration');
 
         /* @var Configuration $config */
         $config = $repo->find(1);
@@ -27,40 +28,44 @@ final class AdminController extends AbstractController
     public function submitAction(Request $request): Response
     {
         $translator = $this->get('translator');
-
         $config = $this->_getConfig();
 
-        $form = $request->get("sms77_configuration");
+        if (null === $config) {
+            $this->addFlash('error', $translator->trans('sms77_api.dashboard.configMissing'));
+            return $this->dashboardAction();
+        }
 
-        if (array_key_exists("apiKey", $form)) {
-            $config->setApiKey($form["apiKey"]);
+        $form = $request->get('sms77_configuration');
+
+        if (array_key_exists('apiKey', $form)) {
+            $config->setApiKey($form['apiKey']);
         }
 
         $apiKey = $config->getApiKey();
         if (!isset($apiKey)) {
-            $this->addFlash("error", $translator->trans('sms77.dashboard.apiKeyNeeded'));
+            $this->addFlash('error', $translator->trans('sms77_api.dashboard.apiKeyNeeded'));
             return $this->dashboardAction();
         }
 
-        if (array_key_exists("onShipping", $form)) {
-            $config->setOnShipping((bool)$form["onShipping"]);
+        if (array_key_exists('onShipping', $form)) {
+            $config->setOnShipping((bool)$form['onShipping']);
         }
 
-        if (array_key_exists("translations", $form)) {
-            foreach ($form["translations"] as $localeCode => $translations) {
-                if (array_key_exists("shippingText", $translations)) {
+        if (array_key_exists('translations', $form)) {
+            foreach ($form['translations'] as $localeCode => $translations) {
+                if (array_key_exists('shippingText', $translations)) {
                     $config->setCurrentLocale($localeCode);
-                    $config->setShippingText($translations["shippingText"]);
+                    $config->setShippingText($translations['shippingText']);
                 }
             }
         }
 
         /* @var EntityManager $manager */
-        $manager = $this->get("sms77.manager.configuration");
+        $manager = $this->get('sms77.manager.configuration');
         $manager->persist($config);
         $manager->flush();
 
-        $this->addFlash("success", $translator->trans('sms77.dashboard.configUpdated'));
+        $this->addFlash('success', $translator->trans('sms77_api.dashboard.configUpdated'));
 
         return $this->dashboardAction();
     }
