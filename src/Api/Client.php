@@ -24,7 +24,7 @@ class Client
         $this->configuration = $this->configurationRepo->find(1);
     }
 
-    public function sms($data)
+    public function sms($data): void
     {
         $state = null;
         $to = null;
@@ -45,7 +45,7 @@ class Client
     }
 
     private function stateToText(string $state): ?string {
-        if (OrderShippingStates::STATE_SHIPPED === $state) {
+        if (null !== $this->configuration && OrderShippingStates::STATE_SHIPPED === $state) {
             return $this->configuration->getShippingText();
         }
 
@@ -53,9 +53,17 @@ class Client
     }
 
     private function initApi(): ?ApiClient {
-        $apiKey = $this->configuration->getApiKey();
+        $client = null;
 
-        return isset($apiKey) ? new ApiClient($this->configuration->getApiKey(), 'sylius') : null;
+        if (null !== $this->configuration) {
+            $apiKey = $this->configuration->getApiKey();
+
+            if (isset($apiKey)) {
+                $client = new ApiClient($this->configuration->getApiKey(), 'sylius');
+            }
+        }
+
+        return $client;
     }
 
     private function orderToPhone(OrderInterface $order): ?string {
