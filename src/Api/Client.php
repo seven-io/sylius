@@ -1,31 +1,23 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Sms77\SyliusPlugin\Api;
 
 use App\Entity\Shipping\Shipment;
 use Sms77\Api\Client as ApiClient;
-use Sms77\SyliusPlugin\Entity\Configuration;
+use Sms77\SyliusPlugin\Repository\ConfigRepository;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\OrderShippingStates;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
-class Client
-{
-    /* @var RepositoryInterface $configurationRepo */
-    protected $configurationRepo;
-
+class Client {
     /* @var Configuration $configuration */
     protected $configuration;
 
-    public function __construct(RepositoryInterface $configurationRepo)
-    {
-        $this->configurationRepo = $configurationRepo;
-        $this->configuration = $this->configurationRepo->find(1);
+    public function __construct(ConfigRepository $configurationRepo) {
+        $this->configuration = $configurationRepo->findEnabled();
     }
 
-    public function sms($data): void
-    {
+    public function sms($data): void {
         $state = null;
         $to = null;
         $text = null;
@@ -42,12 +34,22 @@ class Client
         if (null !== $to && null !== $client) {
             $extras = [];
 
-            if (null !== $this->configuration->getFrom()) {
-                $extras['from'] = $this->configuration->getFrom();
+            $sender = $this->configuration->getSender();
+            if (null !== $sender) {
+                $extras['from'] = $sender;
             }
 
-            $client->sms($to,  $text, $extras);
+            $client->sms($to, $text, $extras);
         }
+    }
+
+    private function orderToPhone(OrderInterface $order): ?string {
+        $shippingAddress = $order->getShippingAddress();
+        $billingAddress = $order->getBillingAddress();
+
+        return null === $shippingAddress->getPhoneNumber()
+            ? $billingAddress->getPhoneNumber()
+            : $shippingAddress->getPhoneNumber();
     }
 
     private function stateToText(string $state): ?string {
@@ -70,14 +72,5 @@ class Client
         }
 
         return $client;
-    }
-
-    private function orderToPhone(OrderInterface $order): ?string {
-        $shippingAddress = $order->getShippingAddress();
-        $billingAddress = $order->getBillingAddress();
-
-        return null === $shippingAddress->getPhoneNumber()
-            ? $billingAddress->getPhoneNumber()
-            : $shippingAddress->getPhoneNumber();
     }
 }

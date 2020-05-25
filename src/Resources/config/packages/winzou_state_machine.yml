@@ -3,5 +3,5 @@ winzou_state_machine:
     callbacks:
       after:
         ship:
-          do: ["@sms77.client", "sms"]
+          do: ["@Sms77\\SyliusPlugin\\Api\\Client", "sms"]
           args: ["object"]

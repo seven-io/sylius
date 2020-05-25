@@ -1,18 +1,11 @@
-<p align="center">
-    <a href="https://sms77.io" target="_blank">
-        <img src="https://www.sms77.io/wp-content/uploads/2016/12/sms77-logo-onblack-1.png" />
-    </a>
-</p>
+![Sms77 Logo](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png)
 
-<h1 align="center">Sms77.io API plugin</h1>
-
-<p align="center">
-    Programatically send SMS by subscribing to Sylius events.<br>
-    Make it even easier for your customers to get informed about order updates.
-</p>
+# Sms77.io API Plugin for Sylius
+Programatically send SMS by subscribing to Sylius events.<br>
+Send out Bulk SMS to all of your customers at once.<br>
+Make it even easier for your customers to get informed about order updates and shop related information.
 
 ## Installation
-
 1. Add to config/bundles.php
     ```Sms77\SyliusPlugin\Sms77SyliusPlugin::class => ['all' => true],```
 
@@ -31,14 +24,11 @@
 4. Make migrations
     ```php bin/console doctrine:migrations:diff```
     ```php bin/console doctrine:migrations:execute --up XXXXXXXXXXXX```
-
-5. Add configuration fixtures
-     ```php bin/console doctrine:fixtures:load --fixtures=vendor/sms77/sylius-plugin/src/DataFixtures/ORM/ConfigurationFixtures.php --append```
      
- A new administration menu entry "Sms77" has been added.
- Check out its content to explore this plugins possibilities.
- 
- ### ToDo
- - Add more events
- - Add more translations
- - Add tests
+5. Navigate to Sms77->Configurations and create your first configuration.
+
+### Screenshots
+![Write Message](https://user-images.githubusercontent.com/12965261/82817149-c414b680-9e9c-11ea-9a41-337f62835cdb.png)
+![Message Overview](https://user-images.githubusercontent.com/12965261/82816566-a8f57700-9e9b-11ea-91b9-4c32882657f0.png)
+![Create Configuration](https://user-images.githubusercontent.com/12965261/82817148-c37c2000-9e9c-11ea-987c-d1d9c0bdb179.png)
+![Configuration Overview](https://user-images.githubusercontent.com/12965261/82816574-aabf3a80-9e9b-11ea-8a14-f2395e251189.png)

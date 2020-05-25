@@ -1,21 +1,36 @@
-sms77_admin_dashboard:
+sms77_admin_config:
   resource: |
-    alias: sms77.configuration
-    path: /sms77/dashboard
+    alias: sms77.config
     section: admin
-  prefix: /admin
+    templates: SyliusAdminBundle:Crud
+    redirect: update
+    except: ['show']
+    grid: sms77_admin_config
+    permission: true
+    vars:
+        all:
+          icon: options
+  type: sylius.resource
+  prefix: admin/sms77
+
+sms77_admin_message:
+  resource: |
+    alias: sms77.message
+    section: admin
+    templates: SyliusAdminBundle:Crud
+    except: ['update']
+    grid: sms77_admin_message
+    permission: true
+    vars:
+        all:
+          icon: envelope
+  type: sylius.resource
+  prefix: admin/sms77
+
+sms77_admin_message_show:
+  path: /admin/sms77/messages/{id}
   methods: [GET]
   defaults:
-    _controller: Sms77SyliusPlugin:Admin:dashboard
+    _controller: sms77.controller.message:showAction
     _sylius:
-      template: Sms77SyliusPlugin:admin:dashboard.html.twig
-      form: Sms77SyliusPlugin\Form\Type\ConfigurationType
-  type: sylius.resource
-
-sms77_admin_dashboard_submit:
-  path: /admin/sms77/dashboard
-  methods: [POST]
-  defaults:
-    _controller: Sms77SyliusPlugin:Admin:submit
-    _sylius:
-      form: Sms77SyliusPlugin\Form\Type\ConfigurationType
+      template: '@Sms77SyliusPlugin/Admin/Message/Show/index.html.twig'

@@ -1,11 +1,23 @@
+sms77:
+  ui:
+    configs: Configurations
+    edit_config: Edit Configuration
+    messages: Messages
+    new_message: Write a new SMS
 sms77_api:
-  dashboard:
-    apiKey: API key
-    apiKeyNeeded: An API key is needed in order to send SMS. Get yours now at http://sms77.io.
-    configMissing: No configuration has been found. Make sure to load the fixtures as described in the README.md.
-    configUpdated: The configuration has been successfully updated.
-    from: From (sender)
-    shippingText: Shipping text
-    title: Sms77.io plugin
-    events: Events
-    useDefault: Use gateway default
+  customerGroups: Customer groups (limits sending only to customers from the specified groups)
+  response: Response
+  one_or_more_responses: Response(s)
+  msg: Message
+  ui:
+    new_config: New Configuration
+    configs: Configurations
+    config: Configuration
+  apiKey: API Key
+  enabled: Enabled
+  label: Label
+  onShipping: On Shipping
+  debug: Debug
+  sender: Sender (from)
+  config: Configuration
+  useDefault: Use gateway default

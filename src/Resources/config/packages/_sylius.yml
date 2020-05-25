@@ -1,0 +1,90 @@
+sylius_grid:
+  grids:
+    sms77_admin_config:
+      driver:
+        name: doctrine/orm
+        options:
+          class: Sms77\SyliusPlugin\Entity\Config
+      fields:
+        label:
+          type: string
+          label: sms77_api.label
+        apiKey:
+          type: string
+          label: sms77_api.apiKey
+        sender:
+          type: string
+          label: sms77_api.sender
+        enabled:
+          type: twig
+          label: sms77_api.enabled
+          sortable: enabled
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        onShipping:
+          type: twig
+          label: sms77_api.onShipping
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        debug:
+          type: twig
+          label: sms77_api.debug
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+      actions:
+        bulk:
+          delete:
+            type: delete
+            label: sylius.ui.delete
+            icon: trash
+        main:
+          create:
+            type: create
+        item:
+          update:
+            type: update
+          delete:
+            type: delete
+      sorting:
+        enabled: desc
+
+    sms77_admin_message:
+      driver:
+        name: doctrine/orm
+        options:
+          class: Sms77\SyliusPlugin\Entity\Message
+      fields:
+        response:
+          type: twig
+          label: sms77_api.response
+          options:
+            template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
+        config:
+          type: string
+          path: config
+          label: sms77_api.config
+        msg:
+          type: string
+          label: sms77_api.msg
+        sender:
+          type: string
+          label: sms77_api.sender
+        customerGroups:
+          type: twig
+          label: sms77_api.customerGroups
+          options:
+            template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
+      actions:
+        bulk:
+          delete:
+            type: delete
+            label: sylius.ui.delete
+            icon: trash
+        main:
+          create:
+            type: create
+        item:
+          delete:
+            type: delete
+          show:
+            type: show

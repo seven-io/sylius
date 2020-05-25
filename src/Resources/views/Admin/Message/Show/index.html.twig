@@ -1,0 +1,35 @@
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% block title %}{{ 'sylius.ui.message' |trans }} #{{ message.id }} {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="ui segment">
+        <table class="ui celled table">
+            <tbody>
+            <tr>
+                <th>Response</th>
+                <td>
+                    {% for response in message.response %}
+                        <pre style='white-space: normal'>{{ response }}</pre>
+                    {% endfor %}
+                </td>
+            </tr>
+
+            <tr>
+                <th>CustomerGroups</th>
+                <td>
+                    {% include "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig" with {'data': message.customerGroups} %}
+                </td>
+            </tr>
+            <tr>
+                <th data-label="Name">Sender</th>
+                <td data-label="Age">{{ message.sender }}</td>
+            </tr>
+            <tr>
+                <th data-label="Name">Config</th>
+                <td data-label="Age">{{ message.config.label }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

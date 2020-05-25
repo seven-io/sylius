@@ -22,7 +22,7 @@ security:
                 login_path: sylius_admin_login
                 check_path: sylius_admin_login_check
                 failure_path: sylius_admin_login
-                default_target_path: sylius_admin_dashboard
+                default_target_path: sylius_admin_config
                 use_forward: false
                 use_referer: true
                 csrf_token_generator: security.csrf.token_manager

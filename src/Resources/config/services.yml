@@ -1,26 +1,41 @@
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    public: true
+  Sms77\SyliusPlugin\:
+    resource: '../../../src/*'
+    exclude: '../../../src/{DependencyInjection,Migrations,Entity,Tests,MessageController.php,Kernel.php}'
 
-  sms77.listener.admin.menu_builder:
+  Sms77\SyliusPlugin\Menu\AdminMenuListener:
     class: Sms77\SyliusPlugin\Menu\AdminMenuListener
+    arguments: ['@router', '@translator']
     tags:
       - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 
-  sms77.configuration.form.type:
-    class: Sms77\SyliusPlugin\Form\Type\ConfigurationType
+  Sms77\SyliusPlugin\Controller\MessageController:
+    autowire: false
+    public: true
+
+  Sms77\SyliusPlugin\EventListener\ConfigListener:
+    class: Sms77\SyliusPlugin\EventListener\ConfigListener
+    arguments: ['@sms77.manager.config']
+    tags:
+      - { name: doctrine.event_listener, event: preUpdate }
+      - { name: doctrine.event_listener, event: prePersist }
+
+  Sms77\SyliusPlugin\Form\Type\MessageType:
+    class: Sms77\SyliusPlugin\Form\Type\MessageType
     tags:
       - { name: form.type }
-    arguments: ['%sms77.model.configuration.class%', ['sylius']]
+    arguments: ['%sms77.model.message.class%', ['sylius']]
 
-  sms77.configuration_translation.form.type:
-    class: Sms77\SyliusPlugin\Form\Type\ConfigurationTranslationType
+  Sms77\SyliusPlugin\Form\Type\ConfigType:
+    class: Sms77\SyliusPlugin\Form\Type\ConfigType
     tags:
       - { name: form.type }
-    arguments: ['%sms77.model.configuration_translation.class%', ['sylius']]
+    arguments: ['%sms77.model.config.class%', ['sylius']]
 
-  sms77.client:
-    class: Sms77\SyliusPlugin\Api\Client
-    arguments: ['@sms77.repository.configuration']
+  Sms77\SyliusPlugin\Form\Type\ConfigTranslationType:
+    class: Sms77\SyliusPlugin\Form\Type\ConfigTranslationType
+    tags:
+      - { name: form.type }
+    arguments: ['%sms77.model.config_translation.class%', ['sylius']]
+
+  Sms77\SyliusPlugin\Repository\ConfigRepository: '@sms77.repository.config'

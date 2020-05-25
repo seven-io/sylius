@@ -1,0 +1,9 @@
+{% if data is iterable %}
+    {% if data.initialized is defined %}
+        {{ data | join(',') }}
+    {% else %}
+        {{ data | json_encode }}
+    {% endif %}
+{% else %}
+    {{ data }}
+{% endif %}

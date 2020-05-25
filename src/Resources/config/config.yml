@@ -2,3 +2,4 @@ imports:
   - { resource: "@Sms77SyliusPlugin/Resources/config/resources.yml" }
   - { resource: "@Sms77SyliusPlugin/Resources/config/services.yml" }
   - { resource: "@Sms77SyliusPlugin/Resources/config/packages/winzou_state_machine.yml" }
+  - { resource: "@Sms77SyliusPlugin/Resources/config/packages/sylius_ui.yml" }

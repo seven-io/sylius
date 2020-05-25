@@ -1,0 +1,5 @@
+sylius_ui:
+  events:
+    sms77.admin.message.index.header:
+      blocks:
+        sms77_configs: '@Sms77SyliusPlugin\Admin\Message\Index\configs.html.twig'

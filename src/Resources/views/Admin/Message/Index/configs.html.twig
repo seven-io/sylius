@@ -1,0 +1,22 @@
+<label style='float: right'>
+    {{ 'sms77_api.ui.config' | trans }}
+    <select class='ui dropdown'>
+        {% for cfg in message_configurations %}
+            <option value='{{ cfg.id }}'>{{ cfg.label ? cfg.label : cfg.id }}</option>
+        {% endfor %}
+    </select>
+</label>
+
+<script>
+    addEventListener('DOMContentLoaded', () => {
+        const $content = document.getElementById('content');
+        const $configChooser = $content.querySelector('select');
+        const $createBtn = $content.querySelector('div.ui.stackable.two.column.grid > div.middle.aligned.column > div > a');
+
+        $createBtn.addEventListener('click', ev => {
+            ev.preventDefault();
+
+            window.location = `${$createBtn.href}?config=${$configChooser.options[$configChooser.selectedIndex].value}`;
+        });
+    });
+</script>
