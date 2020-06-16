@@ -1,7 +1,7 @@
 {
     "name": "sms77/sylius-plugin",
     "type": "sylius-plugin",
-    "keywords": ["sylius", "sylius-plugin"],
+    "keywords": ["sylius", "sms", "marketing"],
     "description": "Sms77.io API plugin for Sylius.",
     "license": "MIT",
     "require": {

@@ -2,12 +2,11 @@
 
 namespace Sms77\SyliusPlugin\Api;
 
-use App\Entity\Shipping\Shipment;
 use Sms77\Api\Client as ApiClient;
 use Sms77\SyliusPlugin\Repository\ConfigRepository;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\OrderShippingStates;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Core\Model\ShipmentInterface;
 
 class Client {
     /* @var Configuration $configuration */
@@ -22,8 +21,8 @@ class Client {
         $to = null;
         $text = null;
 
-        if ($data instanceof Shipment) {
-            /* @var Shipment $data */
+        if ($data instanceof ShipmentInterface) {
+            /* @var ShipmentInterface $data */
             $state = $data->getState();
             $to = $this->orderToPhone($data->getOrder());
             $text = $this->stateToText($state);
