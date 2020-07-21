@@ -1,4 +1,0 @@
-suites:
-    main:
-        namespace: Sms77\SyliusPlugin
-        psr4_prefix: Sms77\SyliusPlugin
