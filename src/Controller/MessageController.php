@@ -33,7 +33,8 @@ class MessageController extends ResourceController {
 
             $newResource->setResponse($this->_getResponse($newResource));
 
-            $event = $this->eventDispatcher->dispatchPreEvent(ResourceActions::CREATE, $configuration, $newResource);
+            $event = $this->eventDispatcher->dispatchPreEvent(
+                ResourceActions::CREATE, $configuration, $newResource);
 
             if ($event->isStopped() && !$configuration->isHtmlRequest()) {
                 throw new HttpException($event->getErrorCode(), $event->getMessage());
@@ -56,13 +57,17 @@ class MessageController extends ResourceController {
             $this->repository->add($newResource);
 
             if ($configuration->isHtmlRequest()) {
-                $this->flashHelper->addSuccessFlash($configuration, ResourceActions::CREATE, $newResource);
+                $this->flashHelper->addSuccessFlash(
+                    $configuration, ResourceActions::CREATE, $newResource);
             }
 
-            $postEvent = $this->eventDispatcher->dispatchPostEvent(ResourceActions::CREATE, $configuration, $newResource);
+            $postEvent = $this->eventDispatcher->dispatchPostEvent(
+                ResourceActions::CREATE, $configuration, $newResource);
 
             if (!$configuration->isHtmlRequest()) {
-                return $this->viewHandler->handle($configuration, View::create($newResource, Response::HTTP_CREATED));
+                return $this->viewHandler->handle(
+                    $configuration, 
+                    View::create($newResource, Response::HTTP_CREATED));
             }
 
             $postEventResponse = $postEvent->getResponse();
@@ -74,10 +79,12 @@ class MessageController extends ResourceController {
         }
 
         if (!$configuration->isHtmlRequest()) {
-            return $this->viewHandler->handle($configuration, View::create($form, Response::HTTP_BAD_REQUEST));
+            return $this->viewHandler->handle(
+                $configuration, View::create($form, Response::HTTP_BAD_REQUEST));
         }
 
-        $initializeEvent = $this->eventDispatcher->dispatchInitializeEvent(ResourceActions::CREATE, $configuration, $newResource);
+        $initializeEvent = $this->eventDispatcher->dispatchInitializeEvent(
+            ResourceActions::CREATE, $configuration, $newResource);
         $initializeEventResponse = $initializeEvent->getResponse();
         if (null !== $initializeEventResponse) {
             return $initializeEventResponse;
@@ -108,7 +115,9 @@ class MessageController extends ResourceController {
         $customerRepo = $this->manager->getRepository(Customer::class);
         $hasCustomerGroups = 0 !== count($customerGroups);
         /* @var CustomerInterface[] $customers */
-        $customers = $hasCustomerGroups ? $customerRepo->findBy(['group' => $customerGroups]) : $customerRepo->findAll();
+        $customers = $hasCustomerGroups
+            ? $customerRepo->findBy(['group' => $customerGroups]) 
+            : $customerRepo->findAll();
 
         $text = $newResource->getMsg();
         $apiRequests = [];
@@ -127,8 +136,9 @@ class MessageController extends ResourceController {
 
         $client = new Client($newResource->getConfig()->getApiKey(), 'sylius');
         $responses = [];
+        $params = array_merge($newResource->getConfig()->getApiParams(), ['json' => 1]);
         foreach ($apiRequests as $to => $text) {
-            $responses[] = $client->sms($to, $text, ['json' => 1]);
+            $responses[] = $client->sms($to, $text, $params);
         }
 
         return $responses;
@@ -140,7 +150,8 @@ class MessageController extends ResourceController {
         $this->isGrantedOr403($configuration, ResourceActions::INDEX);
         $resources = $this->resourcesCollectionProvider->get($configuration, $this->repository);
 
-        $this->eventDispatcher->dispatchMultiple(ResourceActions::INDEX, $configuration, $resources);
+        $this->eventDispatcher->dispatchMultiple(
+            ResourceActions::INDEX, $configuration, $resources);
 
         $view = View::create($resources);
 

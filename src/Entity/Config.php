@@ -56,6 +56,31 @@ class Config implements ResourceInterface, TranslatableInterface {
      */
     protected $debug = false;
     /**
+     * @Column(type="boolean")
+     * @var bool $flash
+     */
+    protected $flash = false;
+    /**
+     * @Column(type="boolean", name="no_reload")
+     * @var bool $noReload
+     */
+    protected $noReload = false;
+    /**
+     * @Column(type="boolean")
+     * @var bool $utf8
+     */
+    protected $utf8 = false;
+    /**
+     * @Column(type="boolean")
+     * @var bool $unicode
+     */
+    protected $unicode = false;
+    /**
+     * @Column(type="boolean", name="performance_tracking")
+     * @var bool $performanceTracking
+     */
+    protected $performanceTracking = false;
+    /**
      * @var Message[] $apiKey
      * @ORM\OneToMany(targetEntity="Message", mappedBy="config")
      */
@@ -99,17 +124,8 @@ class Config implements ResourceInterface, TranslatableInterface {
         return $this->id;
     }
 
-    /**
-     * @return Collection|Message[]
-     */
+    /** @return Collection|Message[] */
     public function getMessages(): Collection {
-        return $this->messages;
-    }
-
-    /**
-     * @return Collection|Message[]
-     */
-    public function setMessages(): Collection {
         return $this->messages;
     }
 
@@ -129,6 +145,46 @@ class Config implements ResourceInterface, TranslatableInterface {
         $this->debug = $debug;
     }
 
+    public function getFlash(): bool {
+        return $this->flash;
+    }
+
+    public function setFlash(bool $flash): void {
+        $this->flash = $flash;
+    }
+
+    public function getNoReload(): bool {
+        return $this->noReload;
+    }
+
+    public function setNoReload(bool $noReload): void {
+        $this->noReload = $noReload;
+    }
+
+    public function getPerformanceTracking(): bool {
+        return $this->performanceTracking;
+    }
+
+    public function setPerformanceTracking(bool $performanceTracking): void {
+        $this->performanceTracking = $performanceTracking;
+    }
+    
+    public function getUtf8(): bool {
+        return $this->utf8;
+    }
+
+    public function setUtf8(bool $utf8): void {
+        $this->utf8 = $utf8;
+    }
+
+    public function getUnicode(): bool {
+        return $this->unicode;
+    }
+
+    public function setUnicode(bool $unicode): void {
+        $this->unicode = $unicode;
+    }
+
     public function getEnabled(): bool {
         return $this->enabled;
     }
@@ -144,10 +200,19 @@ class Config implements ResourceInterface, TranslatableInterface {
     public function getShippingText(): ?string {
         return $this->getTranslation()->getShippingText();
     }
+    
+    public function getApiParams() {
+        return [
+            'debug' => (int)$this->getDebug(),
+            'flash' => (int)$this->getFlash(),
+            'no_reload' => (int)$this->getNoReload(),
+            'performance_tracking' => (int)$this->getPerformanceTracking(),
+            'unicode' => (int)$this->getUnicode(),
+            'utf8' => (int)$this->getUtf8(),
+        ];
+    }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     protected function createTranslation(): ConfigTranslation {
         return new ConfigTranslation();
     }

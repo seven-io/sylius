@@ -31,6 +31,31 @@ sylius_grid:
           label: sms77_api.debug
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        flash:
+          type: twig
+          label: sms77_api.flash
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        noReload:
+          type: twig
+          label: sms77_api.noReload
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        performanceTracking:
+          type: twig
+          label: sms77_api.performanceTracking
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        utf8:
+          type: twig
+          label: sms77_api.utf8
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        unicode:
+          type: twig
+          label: sms77_api.unicode
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
       actions:
         bulk:
           delete:
@@ -49,31 +74,6 @@ sylius_grid:
         enabled: desc
 
     sms77_admin_message:
-      driver:
-        name: doctrine/orm
-        options:
-          class: Sms77\SyliusPlugin\Entity\Message
-      fields:
-        response:
-          type: twig
-          label: sms77_api.response
-          options:
-            template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
-        config:
-          type: string
-          path: config
-          label: sms77_api.config
-        msg:
-          type: string
-          label: sms77_api.msg
-        sender:
-          type: string
-          label: sms77_api.sender
-        customerGroups:
-          type: twig
-          label: sms77_api.customerGroupsDetailed
-          options:
-            template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
       actions:
         bulk:
           delete:
@@ -88,3 +88,28 @@ sylius_grid:
             type: delete
           show:
             type: show
+      driver:
+        name: doctrine/orm
+        options:
+          class: Sms77\SyliusPlugin\Entity\Message
+      fields:
+        config:
+          type: string
+          path: config
+          label: sms77_api.config
+        customerGroups:
+          type: twig
+          label: sms77_api.customerGroupsDetailed
+          options:
+            template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
+        msg:
+          type: string
+          label: sms77_api.msg
+        response:
+          type: twig
+          label: sms77_api.response
+          options:
+            template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
+        sender:
+          type: string
+          label: sms77_api.sender

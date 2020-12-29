@@ -11,14 +11,19 @@ sms77_api:
   customerGroups: Customer groups
   debug: Debug
   enabled: Enabled
+  flash: Flash
   label: Label
   msg: Message
+  noReload: No Reload
   onShipping: On Shipping
   one_or_more_responses: Response(s)
+  performanceTracking: Performance Tracking
   response: Response
   sender: Sender (from)
   ui:
     new_config: New Configuration
     configs: Configurations
     config: Configuration
+  unicode: Unicode
   useDefault: Use gateway default
+  utf8: UTF8

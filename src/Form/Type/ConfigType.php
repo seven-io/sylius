@@ -16,6 +16,11 @@ class ConfigType extends AbstractResourceType {
         $builder
             ->add('apiKey', TextType::class)
             ->add('debug', CheckboxType::class)
+            ->add('flash', CheckboxType::class)
+            ->add('noReload', CheckboxType::class)
+            ->add('performanceTracking', CheckboxType::class)
+            ->add('unicode', CheckboxType::class)
+            ->add('utf8', CheckboxType::class)
             ->add('enabled', CheckboxType::class)
             ->add('label', TextType::class)
             ->add('onShipping', CheckboxType::class)
