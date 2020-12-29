@@ -71,7 +71,7 @@ sylius_grid:
           label: sms77_api.sender
         customerGroups:
           type: twig
-          label: sms77_api.customerGroups
+          label: sms77_api.customerGroupsDetailed
           options:
             template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
       actions:
