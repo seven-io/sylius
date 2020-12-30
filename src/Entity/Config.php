@@ -104,7 +104,7 @@ class Config implements ResourceInterface, TranslatableInterface {
      * @Column(type="integer", nullable=true)
      * @var int $ttl
      */
-    protected $ttl = null;
+    protected $ttl;
     /**
      * @Column(type="string", nullable=true, name="foreign_id")
      * @var string $foreignId
