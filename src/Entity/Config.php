@@ -118,7 +118,7 @@ class Config implements ResourceInterface, TranslatableInterface {
     }
 
     public function __toString() {
-        return $this->name ?? $this->id;
+        return $this->name ?? (string)$this->id;
     }
 
     public function getApiKey(): ?string {
@@ -266,7 +266,7 @@ class Config implements ResourceInterface, TranslatableInterface {
         return $this->getTranslation()->getShippingText();
     }
     
-    public function getApiParams() {
+    public function getApiParams(): array {
         return [
             'debug' => (int)$this->getDebug(),
             'delay' => $this->getDelay(),

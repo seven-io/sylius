@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class ConfigTranslationType extends AbstractResourceType {
     /** {@inheritdoc} */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
             ->add('from', TextType::class, [
                 'attr' => ['placeholder' => 'sms77.useDefault'],
@@ -18,7 +18,7 @@ class ConfigTranslationType extends AbstractResourceType {
     }
 
     /** {@inheritdoc} */
-    public function getBlockPrefix() {
+    public function getBlockPrefix(): ?string {
         return 'sms77_config_translation';
     }
 }

@@ -12,9 +12,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class MessageType extends AbstractResourceType {
     /** {@inheritdoc} */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options): void {
         /* @var Message $message */
         $message = $builder->getData();
+        $cfg = $message->getConfig();
 
         if (null !== $message->getId()) {
             $builder->add('response',
@@ -28,7 +29,7 @@ class MessageType extends AbstractResourceType {
                 'multiple' => true,
             ])
             ->add('from',
-                TextType::class, ['data' => $message->getConfig()->getFrom()])
+                TextType::class, ['data' => null === $cfg ? '' : $cfg->getFrom()])
             ->add('msg', TextareaType::class);
 
         $builder->get('config')
@@ -40,7 +41,7 @@ class MessageType extends AbstractResourceType {
     }
 
     /** {@inheritdoc} */
-    public function getBlockPrefix() {
+    public function getBlockPrefix(): ?string {
         return 'sms77_message';
     }
 }

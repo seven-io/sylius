@@ -2,13 +2,15 @@
 
 namespace Sms77\SyliusPlugin\Repository;
 
-use Doctrine\ORM\EntityManager;
 use Sms77\SyliusPlugin\Entity\Config;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class ConfigRepository extends EntityRepository implements ConfigRepositoryInterface {
     public function findEnabled(): ?Config {
-        return $this->findOneBy(['enabled' => 1]);
+        /** @var Config|null $cfg */
+        $cfg = $this->findOneBy(['enabled' => 1]);
+
+        return $cfg;
     }
 
     public function findByNot(string $field, $value): array {

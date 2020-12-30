@@ -17,18 +17,21 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class MessageController extends ResourceController {
     public function createAction(Request $request): Response {
-        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $configuration = $this->requestConfigurationFactory->create(
+            $this->metadata, $request);
         $this->isGrantedOr403($configuration, ResourceActions::CREATE);
         /* @var Message $newResource */
         $newResource = $this->newResourceFactory->create($configuration, $this->factory);
 
         $cfgId = $request->get('config');
         $cfgRepo = $this->get('sms77.repository.config');
-        $newResource->setConfig($cfgId ? $cfgRepo->find($cfgId) : $cfgRepo->findEnabled());
+        $newResource->setConfig(
+            $cfgId ? $cfgRepo->find($cfgId) : $cfgRepo->findEnabled());
 
         $form = $this->resourceFormFactory->create($configuration, $newResource);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if ($request->isMethod('POST')
+            && $form->handleRequest($request)->isValid()) {
             $newResource = $form->getData();
 
             $newResource->setResponse($this->_getResponse($newResource));
@@ -43,11 +46,8 @@ class MessageController extends ResourceController {
                 $this->flashHelper->addFlashFromEvent($configuration, $event);
 
                 $eventResponse = $event->getResponse();
-                if (null !== $eventResponse) {
-                    return $eventResponse;
-                }
-
-                return $this->redirectHandler->redirectToIndex($configuration, $newResource);
+                return $eventResponse ??
+                    $this->redirectHandler->redirectToIndex($configuration, $newResource);
             }
 
             if ($configuration->hasStateMachine()) {
@@ -66,16 +66,13 @@ class MessageController extends ResourceController {
 
             if (!$configuration->isHtmlRequest()) {
                 return $this->viewHandler->handle(
-                    $configuration, 
+                    $configuration,
                     View::create($newResource, Response::HTTP_CREATED));
             }
 
             $postEventResponse = $postEvent->getResponse();
-            if (null !== $postEventResponse) {
-                return $postEventResponse;
-            }
-
-            return $this->redirectHandler->redirectToResource($configuration, $newResource);
+            return $postEventResponse ??
+                $this->redirectHandler->redirectToResource($configuration, $newResource);
         }
 
         if (!$configuration->isHtmlRequest()) {
@@ -86,22 +83,19 @@ class MessageController extends ResourceController {
         $initializeEvent = $this->eventDispatcher->dispatchInitializeEvent(
             ResourceActions::CREATE, $configuration, $newResource);
         $initializeEventResponse = $initializeEvent->getResponse();
-        if (null !== $initializeEventResponse) {
-            return $initializeEventResponse;
-        }
-
-        return $this->viewHandler->handle(
-            $configuration,
-            View::create()
-                ->setData([
-                    'configuration' => $configuration,
-                    'metadata' => $this->metadata,
-                    'resource' => $newResource,
-                    $this->metadata->getName() => $newResource,
-                    'form' => $form->createView(),
-                ])
-                ->setTemplate($configuration->getTemplate(ResourceActions::CREATE . '.html'))
-        );
+        return $initializeEventResponse ?? $this->viewHandler->handle(
+                $configuration,
+                View::create()
+                    ->setData([
+                        'configuration' => $configuration,
+                        'metadata' => $this->metadata,
+                        'resource' => $newResource,
+                        $this->metadata->getName() => $newResource,
+                        'form' => $form->createView(),
+                    ])
+                    ->setTemplate($configuration->getTemplate(
+                        ResourceActions::CREATE . '.html'))
+            );
     }
 
     private function _getResponse(Message $newResource): array {
@@ -116,7 +110,7 @@ class MessageController extends ResourceController {
         $hasCustomerGroups = 0 !== count($customerGroups);
         /* @var CustomerInterface[] $customers */
         $customers = $hasCustomerGroups
-            ? $customerRepo->findBy(['group' => $customerGroups]) 
+            ? $customerRepo->findBy(['group' => $customerGroups])
             : $customerRepo->findAll();
 
         $text = $newResource->getMsg();
@@ -125,7 +119,7 @@ class MessageController extends ResourceController {
         foreach ($customers as $customer) {
             $phone = $customer->getPhoneNumber() ?? '';
 
-            if (!mb_strlen($phone)) {
+            if ('' === $phone) {
                 continue;
             }
 
@@ -134,21 +128,28 @@ class MessageController extends ResourceController {
                 : $text;
         }
 
-        $client = new Client($newResource->getConfig()->getApiKey(), 'sylius');
         $responses = [];
-        $params = array_merge($newResource->getConfig()->getApiParams(), ['json' => 1]);
-        foreach ($apiRequests as $to => $text) {
-            $responses[] = $client->sms($to, $text, $params);
+        $cfg = $newResource->getConfig();
+
+        if (null !== $cfg) {
+            $client = new Client($cfg->getApiKey(), 'sylius');
+            $params = array_merge($cfg->getApiParams(), ['json' => 1]);
+
+            foreach ($apiRequests as $to => $text) {
+                $responses[] = $client->sms($to, $text, $params);
+            }
         }
 
         return $responses;
     }
 
     public function indexAction(Request $request): Response {
-        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $configuration = $this->requestConfigurationFactory->create(
+            $this->metadata, $request);
 
         $this->isGrantedOr403($configuration, ResourceActions::INDEX);
-        $resources = $this->resourcesCollectionProvider->get($configuration, $this->repository);
+        $resources = $this->resourcesCollectionProvider->get(
+            $configuration, $this->repository);
 
         $this->eventDispatcher->dispatchMultiple(
             ResourceActions::INDEX, $configuration, $resources);
@@ -157,13 +158,15 @@ class MessageController extends ResourceController {
 
         if ($configuration->isHtmlRequest()) {
             $view
-                ->setTemplate($configuration->getTemplate(ResourceActions::INDEX . '.html'))
+                ->setTemplate($configuration->getTemplate(
+                    ResourceActions::INDEX . '.html'))
                 ->setTemplateVar($this->metadata->getPluralName())
                 ->setData([
                     'configuration' => $configuration,
                     'metadata' => $this->metadata,
                     'resources' => $resources,
-                    'message_configurations' => $this->get('sms77.repository.config')->findAll(),
+                    'message_configurations' =>
+                        $this->get('sms77.repository.config')->findAll(),
                     $this->metadata->getPluralName() => $resources,
                 ]);
         }

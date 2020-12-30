@@ -7,84 +7,101 @@ sylius_grid:
           class: Sms77\SyliusPlugin\Entity\Config
       fields:
         apiKey:
-          type: string
           label: sms77.apiKey
-        debug:
+          options:
+            template: "@Sms77SyliusPlugin/Ui/Grid/Field/collapse.html.twig"
+          position: 10
           type: twig
+        debug:
           label: sms77.debug
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
-        delay:
-          type: string
-          label: sms77.delay
-        enabled:
+          position: 14
           type: twig
+        delay:
+          label: sms77.delay
+          position: 15
+          type: string
+        enabled:
           label: sms77.enabled
-          sortable: enabled
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
+          position: 12
+          sortable: ~
+          type: twig
         flash:
+          position: 16
           type: twig
           label: sms77.flash
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         foreignId:
-          type: string
           label: sms77.foreignId
+          position: 17
+          type: string
         from:
-          type: string
           label: sms77.from
+          position: 18
+          type: string
         label:
-          type: string
           label: sms77.label
-        name:
+          position: 19
           type: string
+        name:
           label: sms77.name
+          position: 13
+          sortable: ~
+          type: string
         noReload:
-          type: twig
           label: sms77.noReload
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
-        onShipping:
+          position: 20
           type: twig
+        onShipping:
           label: sms77.onShipping
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
-        performanceTracking:
+          position: 21
           type: twig
+        performanceTracking:
           label: sms77.performanceTracking
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
-        ttl:
-          type: string
-          label: sms77.ttl
-        udh:
-          type: string
-          label: sms77.udh
-        unicode:
+          position: 22
           type: twig
+        ttl:
+          label: sms77.ttl
+          position: 23
+          type: string
+        udh:
+          label: sms77.udh
+          position: 24
+          type: string
+        unicode:
           label: sms77.unicode
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
-        utf8:
+          position: 25
           type: twig
+        utf8:
           label: sms77.utf8
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
+          position: 26
+          type: twig
       actions:
         bulk:
           delete:
-            type: delete
-            label: sylius.ui.delete
             icon: trash
-        main:
-          create:
-            type: create
+            label: sylius.ui.delete
+            type: delete
         item:
           update:
             type: update
-          delete:
-            type: delete
+        main:
+          create:
+            type: create
       sorting:
         enabled: desc
 
@@ -92,9 +109,9 @@ sylius_grid:
       actions:
         bulk:
           delete:
-            type: delete
-            label: sylius.ui.delete
             icon: trash
+            label: sylius.ui.delete
+            type: delete
         main:
           create:
             type: create
@@ -109,22 +126,21 @@ sylius_grid:
           class: Sms77\SyliusPlugin\Entity\Message
       fields:
         config:
-          type: string
-          path: config
           label: sms77.config
+          type: string
         customerGroups:
-          type: twig
           label: sms77.customerGroupsDetailed
           options:
             template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
-        msg:
-          type: string
-          label: sms77.msg
-        response:
           type: twig
+        from:
+          label: sms77.from
+          type: string
+        msg:
+          label: sms77.msg
+          type: string
+        response:
           label: sms77.response
           options:
             template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
-        from:
-          type: string
-          label: sms77.from
+          type: twig
