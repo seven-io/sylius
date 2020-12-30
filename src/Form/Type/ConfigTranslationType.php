@@ -12,7 +12,7 @@ class ConfigTranslationType extends AbstractResourceType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('from', TextType::class, [
-                'attr' => ['placeholder' => 'sms77_api.useDefault'],
+                'attr' => ['placeholder' => 'sms77.useDefault'],
             ])
             ->add('shippingText', TextareaType::class);
     }

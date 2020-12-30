@@ -1,5 +1,5 @@
 <label style='float: right'>
-    {{ 'sms77_api.ui.config' | trans }}
+    {{ 'sms77.ui.config' | trans }}
     <select class='ui dropdown'>
         {% for cfg in message_configurations %}
             <option value='{{ cfg.id }}'>{{ cfg.name ? cfg.name : cfg.id }}</option>

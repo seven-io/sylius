@@ -1,11 +1,4 @@
 sms77:
-  ui:
-    configs: Configurations
-    edit_config: Edit Configuration
-    messages: Messages
-    new_config: New Configuration
-    new_message: Write a new SMS
-sms77_api:
   apiKey: API Key
   config: Configuration
   customerGroupsDetailed: Customer groups (limits sending only to customers from the specified groups)
@@ -26,8 +19,12 @@ sms77_api:
   ttl: TTL
   udh: UDH
   ui:
-    configs: Configurations
     config: Configuration
+    configs: Configurations
+    edit_config: Edit Configuration
+    messages: Messages
+    new_config: New Configuration
+    new_message: Write a new SMS
   unicode: Unicode
   useDefault: Use gateway default
   utf8: UTF8

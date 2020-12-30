@@ -8,64 +8,64 @@ sylius_grid:
       fields:
         apiKey:
           type: string
-          label: sms77_api.apiKey
+          label: sms77.apiKey
         debug:
           type: twig
-          label: sms77_api.debug
+          label: sms77.debug
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         delay:
           type: string
-          label: sms77_api.delay
+          label: sms77.delay
         enabled:
           type: twig
-          label: sms77_api.enabled
+          label: sms77.enabled
           sortable: enabled
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         flash:
           type: twig
-          label: sms77_api.flash
+          label: sms77.flash
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         from:
           type: string
-          label: sms77_api.from
+          label: sms77.from
         label:
           type: string
-          label: sms77_api.label
+          label: sms77.label
         name:
           type: string
-          label: sms77_api.name
+          label: sms77.name
         noReload:
           type: twig
-          label: sms77_api.noReload
+          label: sms77.noReload
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         onShipping:
           type: twig
-          label: sms77_api.onShipping
+          label: sms77.onShipping
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         performanceTracking:
           type: twig
-          label: sms77_api.performanceTracking
+          label: sms77.performanceTracking
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         ttl:
           type: string
-          label: sms77_api.ttl
+          label: sms77.ttl
         udh:
           type: string
-          label: sms77_api.udh
+          label: sms77.udh
         unicode:
           type: twig
-          label: sms77_api.unicode
+          label: sms77.unicode
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         utf8:
           type: twig
-          label: sms77_api.utf8
+          label: sms77.utf8
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
       actions:
@@ -108,20 +108,20 @@ sylius_grid:
         config:
           type: string
           path: config
-          label: sms77_api.config
+          label: sms77.config
         customerGroups:
           type: twig
-          label: sms77_api.customerGroupsDetailed
+          label: sms77.customerGroupsDetailed
           options:
             template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
         msg:
           type: string
-          label: sms77_api.msg
+          label: sms77.msg
         response:
           type: twig
-          label: sms77_api.response
+          label: sms77.response
           options:
             template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
         from:
           type: string
-          label: sms77_api.from
+          label: sms77.from
