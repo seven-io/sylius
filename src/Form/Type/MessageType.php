@@ -33,7 +33,7 @@ class MessageType extends AbstractResourceType {
             ->remove('apiKey')
             ->remove('translations')
             ->remove('onShipping')
-            ->remove('label')
+            ->remove('name')
             ->remove('enabled');
     }
 

@@ -27,9 +27,11 @@
                         with {'data': message.customerGroups} %}
                 </td>
                 <td data-label='{{ 'sms77_api.sender'|trans }}'>
-                    {{ message.sender }}</td>
+                    {{ message.sender }}
+                </td>
                 <td data-label='{{ 'sms77_api.ui.config'|trans }}'>
-                    {{ message.config.label }}</td>
+                    {{ message.config.name ? message.config.name : message.config.id }}
+                </td>
             </tr>
             </tbody>
         </table>

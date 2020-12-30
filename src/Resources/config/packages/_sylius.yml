@@ -6,9 +6,9 @@ sylius_grid:
         options:
           class: Sms77\SyliusPlugin\Entity\Config
       fields:
-        label:
+        name:
           type: string
-          label: sms77_api.label
+          label: sms77_api.name
         apiKey:
           type: string
           label: sms77_api.apiKey

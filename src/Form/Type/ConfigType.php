@@ -22,7 +22,7 @@ class ConfigType extends AbstractResourceType {
             ->add('unicode', CheckboxType::class)
             ->add('utf8', CheckboxType::class)
             ->add('enabled', CheckboxType::class)
-            ->add('label', TextType::class)
+            ->add('name', TextType::class)
             ->add('onShipping', CheckboxType::class)
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => ConfigTranslationType::class,

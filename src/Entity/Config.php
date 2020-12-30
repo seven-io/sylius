@@ -30,9 +30,9 @@ class Config implements ResourceInterface, TranslatableInterface {
     protected $apiKey;
     /**
      * @Column(type="string", nullable=true)
-     * @var string $label
+     * @var string $name
      */
-    protected $label;
+    protected $name;
     /**
      * @Column(type="integer")
      * @Id()
@@ -93,7 +93,7 @@ class Config implements ResourceInterface, TranslatableInterface {
     }
 
     public function __toString() {
-        return $this->label ?? $this->id;
+        return $this->name ?? $this->id;
     }
 
     public function getApiKey(): ?string {
@@ -104,12 +104,12 @@ class Config implements ResourceInterface, TranslatableInterface {
         $this->apiKey = $apiKey;
     }
 
-    public function getLabel(): ?string {
-        return $this->label;
+    public function getName(): ?string {
+        return $this->name;
     }
 
-    public function setLabel(?string $label): void {
-        $this->label = $label;
+    public function setName(?string $name): void {
+        $this->name = $name;
     }
 
     public function setSender(?string $sender): void {

@@ -2,7 +2,7 @@
     {{ 'sms77_api.ui.config' | trans }}
     <select class='ui dropdown'>
         {% for cfg in message_configurations %}
-            <option value='{{ cfg.id }}'>{{ cfg.label ? cfg.label : cfg.id }}</option>
+            <option value='{{ cfg.id }}'>{{ cfg.name ? cfg.name : cfg.id }}</option>
         {% endfor %}
     </select>
 </label>
