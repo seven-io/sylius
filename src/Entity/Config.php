@@ -125,12 +125,12 @@ class Config implements ResourceInterface, TranslatableInterface {
         $this->name = $name;
     }
 
-    public function setSender(?string $sender): void {
-        $this->getTranslation()->setSender($sender);
+    public function setFrom(?string $from): void {
+        $this->getTranslation()->setFrom($from);
     }
 
-    public function getSender(): ?string {
-        return $this->getTranslation()->getSender();
+    public function getFrom(): ?string {
+        return $this->getTranslation()->getFrom();
     }
 
     public function getId(): ?int {
@@ -218,6 +218,7 @@ class Config implements ResourceInterface, TranslatableInterface {
         return [
             'debug' => (int)$this->getDebug(),
             'flash' => (int)$this->getFlash(),
+            'from' => $this->getTranslation()->getFrom(),
             'label' => $this->getLabel(),
             'no_reload' => (int)$this->getNoReload(),
             'performance_tracking' => (int)$this->getPerformanceTracking(),

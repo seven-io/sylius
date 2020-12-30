@@ -20,7 +20,7 @@ sms77_api:
   one_or_more_responses: Response(s)
   performanceTracking: Performance Tracking
   response: Response
-  sender: Sender (from)
+  from: From (sender)
   ui:
     new_config: New Configuration
     configs: Configurations

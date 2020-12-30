@@ -18,9 +18,9 @@ use Sylius\Component\Shipping\Model\ShippingMethodTranslation;
 class ConfigTranslation extends AbstractTranslation implements ResourceInterface {
     /**
      * @Column(type="string", nullable=true)
-     * @var string | null $sender
+     * @var string | null $from
      */
-    private $sender;
+    private $from;
 
     /**
      * @Column(type="integer")
@@ -36,12 +36,12 @@ class ConfigTranslation extends AbstractTranslation implements ResourceInterface
      */
     private $shippingText;
 
-    public function getSender(): ?string {
-        return $this->sender;
+    public function getFrom(): ?string {
+        return $this->from;
     }
 
-    public function setSender(?string $sender): void {
-        $this->sender = $sender;
+    public function setFrom(?string $from): void {
+        $this->from = $from;
     }
 
     public function getId(): int {

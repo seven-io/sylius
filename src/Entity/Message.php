@@ -29,9 +29,9 @@ class Message implements ResourceInterface {
 
     /**
      * @Column(type="string")
-     * @var string $sender
+     * @var string $from
      */
-    protected $sender = '';
+    protected $from = '';
 
     /**
      * @Column(type="json", nullable=true)
@@ -95,12 +95,12 @@ class Message implements ResourceInterface {
         $this->response = $response;
     }
 
-    public function getSender(): string {
-        return $this->sender;
+    public function getFrom(): string {
+        return $this->from;
     }
 
-    public function setSender(string $sender): void {
-        $this->sender = $sender;
+    public function setFrom(string $from): void {
+        $this->from = $from;
     }
 
     public function getMsg(): string {

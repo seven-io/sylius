@@ -11,7 +11,7 @@
             <tr>
                 <th class='ten wide'>{{ 'sms77_api.response'|trans }}</th>
                 <th class='two wide'>{{ 'sms77_api.customerGroups'|trans }}</th>
-                <th class='two wide'>{{ 'sms77_api.sender'|trans }}</th>
+                <th class='two wide'>{{ 'sms77_api.from'|trans }}</th>
                 <th class='two wide'>{{ 'sms77_api.ui.config'|trans }}</th>
             </tr>
             </thead>
@@ -26,8 +26,8 @@
                     {% include '@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig'
                         with {'data': message.customerGroups} %}
                 </td>
-                <td data-label='{{ 'sms77_api.sender'|trans }}'>
-                    {{ message.sender }}
+                <td data-label='{{ 'sms77_api.from'|trans }}'>
+                    {{ message.from }}
                 </td>
                 <td data-label='{{ 'sms77_api.ui.config'|trans }}'>
                     {{ message.config.name ? message.config.name : message.config.id }}

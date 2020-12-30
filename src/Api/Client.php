@@ -30,16 +30,11 @@ class Client {
 
         $client = $this->initApi();
 
-        if (null !== $to && null !== $client) {
-            $extras = [];
-
-            $sender = $this->configuration->getSender();
-            if (null !== $sender) {
-                $extras['from'] = $sender;
-            }
-
-            $client->sms($to, $text, $extras);
+        if (null === $to || null === $client) {
+            return;
         }
+
+        $client->sms($to, $text, $this->configuration->getApiParams());
     }
 
     private function orderToPhone(OrderInterface $order): ?string {

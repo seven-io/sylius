@@ -15,9 +15,9 @@ sylius_grid:
         apiKey:
           type: string
           label: sms77_api.apiKey
-        sender:
+        from:
           type: string
-          label: sms77_api.sender
+          label: sms77_api.from
         enabled:
           type: twig
           label: sms77_api.enabled
@@ -113,6 +113,6 @@ sylius_grid:
           label: sms77_api.response
           options:
             template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
-        sender:
+        from:
           type: string
-          label: sms77_api.sender
+          label: sms77_api.from

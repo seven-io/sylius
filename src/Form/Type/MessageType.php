@@ -27,8 +27,8 @@ class MessageType extends AbstractResourceType {
                 'class' => CustomerGroup::class,
                 'multiple' => true,
             ])
-            ->add('sender',
-                TextType::class, ['data' => $message->getConfig()->getSender(),])
+            ->add('from',
+                TextType::class, ['data' => $message->getConfig()->getFrom()])
             ->add('msg', TextareaType::class);
 
         $builder->get('config')

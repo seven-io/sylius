@@ -11,7 +11,7 @@ class ConfigTranslationType extends AbstractResourceType {
     /** {@inheritdoc} */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('sender', TextType::class, [
+            ->add('from', TextType::class, [
                 'attr' => ['placeholder' => 'sms77_api.useDefault'],
             ])
             ->add('shippingText', TextareaType::class);
