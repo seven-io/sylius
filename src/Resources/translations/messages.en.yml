@@ -12,6 +12,7 @@ sms77_api:
   debug: Debug
   enabled: Enabled
   flash: Flash
+  label: Label
   name: Name
   msg: Message
   noReload: No Reload

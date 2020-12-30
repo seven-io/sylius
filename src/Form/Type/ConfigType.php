@@ -21,6 +21,7 @@ class ConfigType extends AbstractResourceType {
             ->add('performanceTracking', CheckboxType::class)
             ->add('unicode', CheckboxType::class)
             ->add('utf8', CheckboxType::class)
+            ->add('label', TextType::class)
             ->add('enabled', CheckboxType::class)
             ->add('name', TextType::class)
             ->add('onShipping', CheckboxType::class)

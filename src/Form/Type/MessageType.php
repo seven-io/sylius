@@ -17,7 +17,8 @@ class MessageType extends AbstractResourceType {
         $message = $builder->getData();
 
         if (null !== $message->getId()) {
-            $builder->add('response', TextareaType::class, ['attr' => ['readonly' => true],]);
+            $builder->add('response',
+                TextareaType::class, ['attr' => ['readonly' => true],]);
         }
 
         $builder
@@ -26,7 +27,8 @@ class MessageType extends AbstractResourceType {
                 'class' => CustomerGroup::class,
                 'multiple' => true,
             ])
-            ->add('sender', TextType::class, ['data' => $message->getConfig()->getSender(),])
+            ->add('sender',
+                TextType::class, ['data' => $message->getConfig()->getSender(),])
             ->add('msg', TextareaType::class);
 
         $builder->get('config')

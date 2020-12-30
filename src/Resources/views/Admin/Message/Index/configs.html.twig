@@ -10,13 +10,15 @@
 <script>
     addEventListener('DOMContentLoaded', () => {
         const $content = document.getElementById('content');
-        const $configChooser = $content.querySelector('select');
-        const $createBtn = $content.querySelector('div.ui.stackable.two.column.grid > div.middle.aligned.column > div > a');
+        const $select = $content.querySelector('select');
+        const $btn = $content.querySelector(
+            'div.ui.stackable.two.column.grid > div.middle.aligned.column > div > a');
 
-        $createBtn.addEventListener('click', ev => {
+        $btn.addEventListener('click', ev => {
             ev.preventDefault();
 
-            window.location = `${$createBtn.href}?config=${$configChooser.options[$configChooser.selectedIndex].value}`;
+            window.location =
+                `${$btn.href}?config=${$select.options[$select.selectedIndex].value}`;
         });
     });
 </script>
