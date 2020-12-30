@@ -22,6 +22,7 @@ class ConfigType extends AbstractResourceType {
             ->add('unicode', CheckboxType::class, ['required' => false])
             ->add('utf8', CheckboxType::class, ['required' => false])
             ->add('label', TextType::class, ['required' => false])
+            ->add('delay', TextType::class, ['required' => false])
             ->add('enabled', CheckboxType::class)
             ->add('name', TextType::class)
             ->add('onShipping', CheckboxType::class)

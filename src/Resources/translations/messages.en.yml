@@ -10,6 +10,7 @@ sms77_api:
   customerGroupsDetailed: Customer groups (limits sending only to customers from the specified groups)
   customerGroups: Customer groups
   debug: Debug
+  delay: Delay
   enabled: Enabled
   flash: Flash
   label: Label

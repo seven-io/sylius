@@ -84,12 +84,17 @@ class Config implements ResourceInterface, TranslatableInterface {
      * @var Message[] $apiKey
      * @ORM\OneToMany(targetEntity="Message", mappedBy="config")
      */
-    private $messages;
+    protected $messages;
     /**
      * @Column(type="string", nullable=true)
      * @var string $label
      */
     protected $label;
+    /**
+     * @Column(type="string", nullable=true)
+     * @var string $delay
+     */
+    protected $delay;
 
     public function __construct() {
         $this->initializeTranslationsCollection();
@@ -107,6 +112,14 @@ class Config implements ResourceInterface, TranslatableInterface {
 
     public function setApiKey(string $apiKey): void {
         $this->apiKey = $apiKey;
+    }
+
+    public function getDelay(): ?string {
+        return $this->delay;
+    }
+
+    public function setDelay(?string $delay): void {
+        $this->delay = $delay;
     }
 
     public function getLabel(): ?string {
@@ -217,6 +230,7 @@ class Config implements ResourceInterface, TranslatableInterface {
     public function getApiParams() {
         return [
             'debug' => (int)$this->getDebug(),
+            'delay' => $this->getDelay(),
             'flash' => (int)$this->getFlash(),
             'from' => $this->getTranslation()->getFrom(),
             'label' => $this->getLabel(),

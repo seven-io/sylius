@@ -6,6 +6,9 @@ sylius_grid:
         options:
           class: Sms77\SyliusPlugin\Entity\Config
       fields:
+        delay:
+          type: string
+          label: sms77_api.delay
         label:
           type: string
           label: sms77_api.label
