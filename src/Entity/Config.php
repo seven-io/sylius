@@ -95,6 +95,11 @@ class Config implements ResourceInterface, TranslatableInterface {
      * @var string $delay
      */
     protected $delay;
+    /**
+     * @Column(type="string", nullable=true)
+     * @var string $udh
+     */
+    protected $udh;
 
     public function __construct() {
         $this->initializeTranslationsCollection();
@@ -120,6 +125,14 @@ class Config implements ResourceInterface, TranslatableInterface {
 
     public function setDelay(?string $delay): void {
         $this->delay = $delay;
+    }
+
+    public function getUdh(): ?string {
+        return $this->udh;
+    }
+
+    public function setUdh(?string $udh): void {
+        $this->udh = $udh;
     }
 
     public function getLabel(): ?string {
@@ -236,6 +249,7 @@ class Config implements ResourceInterface, TranslatableInterface {
             'label' => $this->getLabel(),
             'no_reload' => (int)$this->getNoReload(),
             'performance_tracking' => (int)$this->getPerformanceTracking(),
+            'udh' => $this->getUdh(),
             'unicode' => (int)$this->getUnicode(),
             'utf8' => (int)$this->getUtf8(),
         ];

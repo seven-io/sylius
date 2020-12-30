@@ -22,6 +22,7 @@ sms77_api:
   performanceTracking: Performance Tracking
   response: Response
   from: From (sender)
+  udh: UDH
   ui:
     new_config: New Configuration
     configs: Configurations

@@ -6,35 +6,21 @@ sylius_grid:
         options:
           class: Sms77\SyliusPlugin\Entity\Config
       fields:
-        delay:
-          type: string
-          label: sms77_api.delay
-        label:
-          type: string
-          label: sms77_api.label
-        name:
-          type: string
-          label: sms77_api.name
         apiKey:
           type: string
           label: sms77_api.apiKey
-        from:
+        debug:
+          type: twig
+          label: sms77_api.debug
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        delay:
           type: string
-          label: sms77_api.from
+          label: sms77_api.delay
         enabled:
           type: twig
           label: sms77_api.enabled
           sortable: enabled
-          options:
-            template: "@SyliusUi/Grid/Field/enabled.html.twig"
-        onShipping:
-          type: twig
-          label: sms77_api.onShipping
-          options:
-            template: "@SyliusUi/Grid/Field/enabled.html.twig"
-        debug:
-          type: twig
-          label: sms77_api.debug
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         flash:
@@ -42,9 +28,23 @@ sylius_grid:
           label: sms77_api.flash
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        from:
+          type: string
+          label: sms77_api.from
+        label:
+          type: string
+          label: sms77_api.label
+        name:
+          type: string
+          label: sms77_api.name
         noReload:
           type: twig
           label: sms77_api.noReload
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        onShipping:
+          type: twig
+          label: sms77_api.onShipping
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         performanceTracking:
@@ -52,14 +52,17 @@ sylius_grid:
           label: sms77_api.performanceTracking
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
-        utf8:
-          type: twig
-          label: sms77_api.utf8
-          options:
-            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        udh:
+          type: string
+          label: sms77_api.udh
         unicode:
           type: twig
           label: sms77_api.unicode
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        utf8:
+          type: twig
+          label: sms77_api.utf8
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
       actions:
