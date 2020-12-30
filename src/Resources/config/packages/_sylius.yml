@@ -52,6 +52,9 @@ sylius_grid:
           label: sms77_api.performanceTracking
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        ttl:
+          type: string
+          label: sms77_api.ttl
         udh:
           type: string
           label: sms77_api.udh

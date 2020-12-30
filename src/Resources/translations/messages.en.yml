@@ -3,6 +3,7 @@ sms77:
     configs: Configurations
     edit_config: Edit Configuration
     messages: Messages
+    new_config: New Configuration
     new_message: Write a new SMS
 sms77_api:
   apiKey: API Key
@@ -22,9 +23,9 @@ sms77_api:
   performanceTracking: Performance Tracking
   response: Response
   from: From (sender)
+  ttl: TTL
   udh: UDH
   ui:
-    new_config: New Configuration
     configs: Configurations
     config: Configuration
   unicode: Unicode

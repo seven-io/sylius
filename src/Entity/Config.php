@@ -100,6 +100,11 @@ class Config implements ResourceInterface, TranslatableInterface {
      * @var string $udh
      */
     protected $udh;
+    /**
+     * @Column(type="integer", nullable=true)
+     * @var int $ttl
+     */
+    protected $ttl = null;
 
     public function __construct() {
         $this->initializeTranslationsCollection();
@@ -133,6 +138,14 @@ class Config implements ResourceInterface, TranslatableInterface {
 
     public function setUdh(?string $udh): void {
         $this->udh = $udh;
+    }
+
+    public function getTtl(): ?int {
+        return $this->ttl;
+    }
+
+    public function setTtl(?int $ttl): void {
+        $this->ttl = $ttl;
     }
 
     public function getLabel(): ?string {
@@ -249,6 +262,7 @@ class Config implements ResourceInterface, TranslatableInterface {
             'label' => $this->getLabel(),
             'no_reload' => (int)$this->getNoReload(),
             'performance_tracking' => (int)$this->getPerformanceTracking(),
+            'ttl' => $this->getTtl(),
             'udh' => $this->getUdh(),
             'unicode' => (int)$this->getUnicode(),
             'utf8' => (int)$this->getUtf8(),
