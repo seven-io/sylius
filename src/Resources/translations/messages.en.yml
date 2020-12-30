@@ -7,6 +7,7 @@ sms77:
   delay: Delay
   enabled: Enabled
   flash: Flash
+  foreignId: Foreign ID
   label: Label
   name: Name
   msg: Message

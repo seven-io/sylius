@@ -23,6 +23,7 @@ class ConfigType extends AbstractResourceType {
             ->add('unicode', CheckboxType::class, ['required' => false])
             ->add('utf8', CheckboxType::class, ['required' => false])
             ->add('label', TextType::class, ['required' => false])
+            ->add('foreign_id', TextType::class, ['required' => false])
             ->add('delay', TextType::class, ['required' => false])
             ->add('udh', TextType::class, ['required' => false])
             ->add('ttl', IntegerType::class,

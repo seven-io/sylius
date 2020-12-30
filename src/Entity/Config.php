@@ -105,6 +105,11 @@ class Config implements ResourceInterface, TranslatableInterface {
      * @var int $ttl
      */
     protected $ttl = null;
+    /**
+     * @Column(type="string", nullable=true, name="foreign_id")
+     * @var string $foreignId
+     */
+    protected $foreignId;
 
     public function __construct() {
         $this->initializeTranslationsCollection();
@@ -130,6 +135,14 @@ class Config implements ResourceInterface, TranslatableInterface {
 
     public function setDelay(?string $delay): void {
         $this->delay = $delay;
+    }
+
+    public function getForeignId(): ?string {
+        return $this->foreignId;
+    }
+
+    public function setForeignId(?string $foreignId): void {
+        $this->foreignId = $foreignId;
     }
 
     public function getUdh(): ?string {
@@ -258,6 +271,7 @@ class Config implements ResourceInterface, TranslatableInterface {
             'debug' => (int)$this->getDebug(),
             'delay' => $this->getDelay(),
             'flash' => (int)$this->getFlash(),
+            'foreign_id' => $this->getForeignId(),
             'from' => $this->getTranslation()->getFrom(),
             'label' => $this->getLabel(),
             'no_reload' => (int)$this->getNoReload(),
