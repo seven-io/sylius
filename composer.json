@@ -1,14 +1,16 @@
 {
     "authors": [
         {
-            "email": "a.matthies@sms77.io",
-            "name": "André Matties",
+            "email": "matthiez@gmail.com",
+            "name": "André Matthies",
             "role": "Developer"
         }
     ],
     "support": {
         "email": "support@sms77.io",
-        "source": "https://github.com/sms77io/sylius-plugin"
+        "docs": "https://github.com/sms77io/sylius",
+        "rss": "https://www.sms77.io/de/feed/",
+        "source": "https://github.com/sms77io/sylius"
     },
     "name": "sms77/sylius-plugin",
     "type": "sylius-plugin",
@@ -20,7 +22,7 @@
     "description": "Sms77.io API plugin for Sylius.",
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "7.2 - 8.0",
         "sylius/sylius": "^1.6",
         "sms77/api": "^1.1.0"
     },
