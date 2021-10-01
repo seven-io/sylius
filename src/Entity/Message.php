@@ -28,10 +28,10 @@ class Message implements ResourceInterface {
     protected $config;
 
     /**
-     * @Column(type="string")
-     * @var string $from
+     * @Column(type="string", nullable=true, name="`from`")
+     * @var string|null $from
      */
-    protected $from = '';
+    protected $from = null;
 
     /**
      * @Column(type="json", nullable=true)
@@ -95,11 +95,11 @@ class Message implements ResourceInterface {
         $this->response = $response;
     }
 
-    public function getFrom(): string {
+    public function getFrom(): ?string {
         return $this->from;
     }
 
-    public function setFrom(string $from): void {
+    public function setFrom(?string $from): void {
         $this->from = $from;
     }
 

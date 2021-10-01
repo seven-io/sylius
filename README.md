@@ -25,9 +25,9 @@ Make it even easier for your customers to get informed about order updates and s
         - { resource: "@Sms77SyliusPlugin/Resources/config/config.yml" }
     ```
 
-5. Make migrations
+5. Make and execute migrations
     ```php bin/console doctrine:migrations:diff```
-    ```php bin/console doctrine:migrations:execute --up XXXXXXXXXXXX```
+    ```php bin/console doctrine:migrations:migrate```
      
 6. Navigate to Sms77->Configurations and create your first configuration.
 
@@ -36,3 +36,9 @@ Make it even easier for your customers to get informed about order updates and s
 ![Message Overview](screenshots/messages.png "Message Overview")
 ![Create Configuration](screenshots/config_edit.png "Create Configuration")
 ![Configuration Overview](screenshots/config_list.png "Configuration Overview")
+
+### Support
+
+Need help? Feel free to [contact us](https://www.sms77.io/en/company/contact/).
+
+[![MIT](https://img.shields.io/badge/License-MIT-teal.svg)](LICENSE)

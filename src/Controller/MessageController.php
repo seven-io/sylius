@@ -4,6 +4,7 @@ namespace Sms77\SyliusPlugin\Controller;
 
 use FOS\RestBundle\View\View;
 use Sms77\Api\Client;
+use Sms77\Api\Params\SmsParams;
 use Sms77\SyliusPlugin\Entity\Message;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\CustomerRepository;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
@@ -39,9 +40,9 @@ class MessageController extends ResourceController {
             $event = $this->eventDispatcher->dispatchPreEvent(
                 ResourceActions::CREATE, $configuration, $newResource);
 
-            if ($event->isStopped() && !$configuration->isHtmlRequest()) {
+            if ($event->isStopped() && !$configuration->isHtmlRequest())
                 throw new HttpException($event->getErrorCode(), $event->getMessage());
-            }
+
             if ($event->isStopped()) {
                 $this->flashHelper->addFlashFromEvent($configuration, $event);
 
@@ -50,25 +51,19 @@ class MessageController extends ResourceController {
                     $this->redirectHandler->redirectToIndex($configuration, $newResource);
             }
 
-            if ($configuration->hasStateMachine()) {
+            if ($configuration->hasStateMachine())
                 $this->stateMachine->apply($configuration, $newResource);
-            }
 
             $this->repository->add($newResource);
 
-            if ($configuration->isHtmlRequest()) {
-                $this->flashHelper->addSuccessFlash(
-                    $configuration, ResourceActions::CREATE, $newResource);
-            }
+            if ($configuration->isHtmlRequest()) $this->flashHelper->addSuccessFlash(
+                $configuration, ResourceActions::CREATE, $newResource);
 
             $postEvent = $this->eventDispatcher->dispatchPostEvent(
                 ResourceActions::CREATE, $configuration, $newResource);
 
-            if (!$configuration->isHtmlRequest()) {
-                return $this->viewHandler->handle(
-                    $configuration,
-                    View::create($newResource, Response::HTTP_CREATED));
-            }
+            if (!$configuration->isHtmlRequest()) return $this->viewHandler->handle(
+                $configuration, View::create($newResource, Response::HTTP_CREATED));
 
             $postEventResponse = $postEvent->getResponse();
             return $postEventResponse ??
@@ -83,49 +78,58 @@ class MessageController extends ResourceController {
         $initializeEvent = $this->eventDispatcher->dispatchInitializeEvent(
             ResourceActions::CREATE, $configuration, $newResource);
         $initializeEventResponse = $initializeEvent->getResponse();
+        $viewData = [
+            'configuration' => $configuration,
+            'form' => $form->createView(),
+            'metadata' => $this->metadata,
+            'resource' => $newResource,
+            $this->metadata->getName() => $newResource,
+        ];
+        $tpl = $configuration->getTemplate(ResourceActions::CREATE . '.html');
+        return $initializeEventResponse ?? new Response($this->container->get('twig')->render(
+                $tpl,
+                $viewData
+            ));
+
         return $initializeEventResponse ?? $this->viewHandler->handle(
                 $configuration,
-                View::create()
-                    ->setData([
-                        'configuration' => $configuration,
-                        'metadata' => $this->metadata,
-                        'resource' => $newResource,
-                        $this->metadata->getName() => $newResource,
-                        'form' => $form->createView(),
-                    ])
-                    ->setTemplate($configuration->getTemplate(
-                        ResourceActions::CREATE . '.html'))
+                View::create()->setData($viewData)->setTemplate($tpl)
             );
     }
 
-    private function _getResponse(Message $newResource): array {
+    private function getCustomerGroupIds(Message $message): array {
         $customerGroups = [];
-        foreach ($newResource->getCustomerGroups()->toArray() as $customerGroup) {
+        foreach ($message->getCustomerGroups()->toArray() as $customerGroup) {
             /** @var CustomerGroup $customerGroup */
             $customerGroups[] = $customerGroup->getId();
         }
+        return $customerGroups;
+    }
 
+    private function _getResponse(Message $newResource): array {
+        $customerGroupIds = $this->getCustomerGroupIds($newResource);
         /** @var CustomerRepository $customerRepo */
         $customerRepo = $this->manager->getRepository(Customer::class);
-        $hasCustomerGroups = 0 !== count($customerGroups);
+        $hasCustomerGroups = 0 !== count($customerGroupIds);
         /* @var CustomerInterface[] $customers */
         $customers = $hasCustomerGroups
-            ? $customerRepo->findBy(['group' => $customerGroups])
+            ? $customerRepo->findBy(['group' => $customerGroupIds])
             : $customerRepo->findAll();
 
         $text = $newResource->getMsg();
         $apiRequests = [];
         $isPersonalized = false !== strpos($newResource->getMsg(), '{0}');
+       // dd($isPersonalized);
+
         foreach ($customers as $customer) {
             $phone = $customer->getPhoneNumber() ?? '';
 
-            if ('' === $phone) {
-                continue;
-            }
+            if ('' === $phone) continue;
 
-            $apiRequests[$phone] = $isPersonalized
-                ? str_replace('{0}', $customer->getFullName(), $text)
-                : $text;
+            if ($isPersonalized)
+                $apiRequests[$phone] = str_replace('{0}', $customer->getFullName(), $text);
+            else
+                $apiRequests = [array_key_first($apiRequests) . ',' . $phone => $text];
         }
 
         $responses = [];
@@ -133,10 +137,26 @@ class MessageController extends ResourceController {
 
         if (null !== $cfg) {
             $client = new Client($cfg->getApiKey(), 'sylius');
-            $params = array_merge($cfg->getApiParams(), ['json' => 1]);
+
+            $smsParams = new SmsParams;
+            $smsParams->setDebug($cfg->getDebug());
+            $smsParams->setDelay($cfg->getDelay());
+            $smsParams->setFlash($cfg->getFlash());
+            $smsParams->setForeignId($cfg->getForeignId());
+            $smsParams->setFrom($cfg->getFrom());
+            $smsParams->setLabel($cfg->getLabel());
+            $smsParams->setNoReload($cfg->getNoReload());
+            $smsParams->setPerformanceTracking($cfg->getPerformanceTracking());
+            $smsParams->setTtl($cfg->getTtl());
+            $smsParams->setUdh($cfg->getUdh());
+            $smsParams->setUnicode($cfg->getUnicode());
+            $smsParams->setUtf8($cfg->getUtf8());
 
             foreach ($apiRequests as $to => $text) {
-                $responses[] = $client->sms($to, $text, $params);
+                $smsParams = clone $smsParams;
+                $smsParams->setText($text);
+                $smsParams->setTo($to);
+                $responses[] = $client->smsJson($smsParams);
             }
         }
 
@@ -156,20 +176,29 @@ class MessageController extends ResourceController {
 
         $view = View::create($resources);
 
-        if ($configuration->isHtmlRequest()) {
-            $view
-                ->setTemplate($configuration->getTemplate(
-                    ResourceActions::INDEX . '.html'))
-                ->setTemplateVar($this->metadata->getPluralName())
-                ->setData([
-                    'configuration' => $configuration,
-                    'metadata' => $this->metadata,
-                    'resources' => $resources,
-                    'message_configurations' =>
-                        $this->get('sms77.repository.config')->findAll(),
-                    $this->metadata->getPluralName() => $resources,
-                ]);
+        if (!$configuration->isHtmlRequest()) {
+            $view->setStatusCode(Response::HTTP_BAD_REQUEST);
+            return $this->viewHandler->handle($configuration, $view);
         }
+
+        $pluralName = $this->metadata->getPluralName();
+        $tpl = $configuration->getTemplate(ResourceActions::INDEX . '.html');
+        $viewData = [
+            'configuration' => $configuration,
+            'message_configurations' => $this->get('sms77.repository.config')->findAll(),
+            'metadata' => $this->metadata,
+            'resources' => $resources,
+            $pluralName => $resources,
+        ];
+        return new Response($this->container->get('twig')->render(
+            $tpl,
+            $viewData
+        ));
+
+        if ($configuration->isHtmlRequest()) $view
+            ->setTemplate($tpl)
+            ->setTemplateVar($pluralName)
+            ->setData($viewData);
 
         return $this->viewHandler->handle($configuration, $view);
     }

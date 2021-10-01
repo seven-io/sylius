@@ -19,7 +19,9 @@
             <tr>
                 <td data-label='{{ 'sms77.response'|trans }}'>
                     {% for response in message.response %}
-                        <pre style='white-space: normal'>{{ response }}</pre>
+                        <pre style='white-space: normal'>
+                            {{ response|json_encode(constant('JSON_PRETTY_PRINT')) }}
+                        </pre>
                     {% endfor %}
                 </td>
                 <td data-label='{{ 'sms77.customerGroups'|trans }}'>

@@ -2,7 +2,7 @@ sms77_admin_config:
   resource: |
     alias: sms77.config
     section: admin
-    templates: SyliusAdminBundle:Crud
+    templates: '@SyliusAdmin/Crud'
     redirect: update
     except: ['show']
     grid: sms77_admin_config
@@ -17,7 +17,7 @@ sms77_admin_message:
   resource: |
     alias: sms77.message
     section: admin
-    templates: SyliusAdminBundle:Crud
+    templates: '@SyliusAdmin/Crud'
     except: ['update']
     grid: sms77_admin_message
     permission: true

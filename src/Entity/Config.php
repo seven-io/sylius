@@ -268,18 +268,18 @@ class Config implements ResourceInterface, TranslatableInterface {
     
     public function getApiParams(): array {
         return [
-            'debug' => (int)$this->getDebug(),
+            'debug' => (bool)$this->getDebug(),
             'delay' => $this->getDelay(),
-            'flash' => (int)$this->getFlash(),
+            'flash' => (bool)$this->getFlash(),
             'foreign_id' => $this->getForeignId(),
             'from' => $this->getTranslation()->getFrom(),
             'label' => $this->getLabel(),
-            'no_reload' => (int)$this->getNoReload(),
-            'performance_tracking' => (int)$this->getPerformanceTracking(),
+            'no_reload' => (bool)$this->getNoReload(),
+            'performance_tracking' => (bool)$this->getPerformanceTracking(),
             'ttl' => $this->getTtl(),
             'udh' => $this->getUdh(),
-            'unicode' => (int)$this->getUnicode(),
-            'utf8' => (int)$this->getUtf8(),
+            'unicode' => (bool)$this->getUnicode(),
+            'utf8' => (bool)$this->getUtf8(),
         ];
     }
 

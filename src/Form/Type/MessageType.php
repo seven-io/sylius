@@ -34,10 +34,11 @@ class MessageType extends AbstractResourceType {
 
         $builder->get('config')
             ->remove('apiKey')
-            ->remove('translations')
-            ->remove('onShipping')
+            ->remove('enabled')
             ->remove('name')
-            ->remove('enabled');
+            ->remove('onShipping')
+            ->remove('translations')
+        ;
     }
 
     /** {@inheritdoc} */

@@ -17,7 +17,7 @@ use Sylius\Component\Shipping\Model\ShippingMethodTranslation;
  */
 class ConfigTranslation extends AbstractTranslation implements ResourceInterface {
     /**
-     * @Column(type="string", nullable=true)
+     * @Column(type="string", nullable=true, name="`from`")
      * @var string | null $from
      */
     private $from;
