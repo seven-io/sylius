@@ -2,7 +2,7 @@
 
 namespace Sms77\SyliusPlugin\Form\Type;
 
-use Sms77\SyliusPlugin\Entity\Message;
+use Sms77\SyliusPlugin\Entity\AbstractMessage;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Customer\Model\CustomerGroup;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -10,17 +10,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class MessageType extends AbstractResourceType {
+abstract class AbstractMessageType extends AbstractResourceType {
     /** {@inheritdoc} */
     public function buildForm(FormBuilderInterface $builder, array $options): void {
-        /* @var Message $message */
+        /* @var AbstractMessage $message */
         $message = $builder->getData();
         $cfg = $message->getConfig();
 
-        if (null !== $message->getId()) {
-            $builder->add('response',
-                TextareaType::class, ['attr' => ['readonly' => true],]);
-        }
+        if (null !== $message->getId()) $builder->add('response',
+            TextareaType::class, ['attr' => ['readonly' => true],]);
 
         $builder
             ->add('config', ConfigType::class, ['label' => false])
@@ -37,12 +35,6 @@ class MessageType extends AbstractResourceType {
             ->remove('enabled')
             ->remove('name')
             ->remove('onShipping')
-            ->remove('translations')
-        ;
-    }
-
-    /** {@inheritdoc} */
-    public function getBlockPrefix(): ?string {
-        return 'sms77_message';
+            ->remove('translations');
     }
 }

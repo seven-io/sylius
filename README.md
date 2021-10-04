@@ -1,8 +1,9 @@
 ![Sms77 Logo](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png "Sms77 Logo")
 
 # Official Sylius Plugin for Sms77.io
-Programmatically send SMS by subscribing to Sylius events.<br>
-Send out Bulk SMS to all of your customers at once.<br>
+Supports sending SMS and making text-to-speech calls.
+Programmatically send messages by subscribing to Sylius events.<br>
+Send out bulk messages to all of your customers at once.<br>
 Make it even easier for your customers to get informed about order updates and shop related information.
 
 ## Installation
@@ -32,8 +33,10 @@ Make it even easier for your customers to get informed about order updates and s
 6. Navigate to Sms77->Configurations and create your first configuration.
 
 ### Screenshots
-![Write Message](screenshots/write_sms.png "Write Message")
-![Message Overview](screenshots/messages.png "Message Overview")
+![Write SMS](screenshots/write_sms.png "Write SMS")
+![Write Voice](screenshots/write_voice.png "Write Voice")
+![Sent SMS](screenshots/sms.png "Sent SMS")
+![Sent Voice](screenshots/voice.png "Sent Voice")
 ![Create Configuration](screenshots/config_edit.png "Create Configuration")
 ![Configuration Overview](screenshots/config_list.png "Configuration Overview")
 

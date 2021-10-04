@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use Sms77\Api\Params\SmsParams;
+use Sms77\Api\Params\VoiceParams;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
@@ -110,11 +112,16 @@ class Config implements ResourceInterface, TranslatableInterface {
      * @var string $foreignId
      */
     protected $foreignId;
+    /**
+     * @Column(type="boolean")
+     * @var bool $xml
+     */
+    protected $xml = false;
 
     public function __construct() {
         $this->initializeTranslationsCollection();
 
-        $this->messages = new ArrayCollection();
+        $this->messages = new ArrayCollection;
     }
 
     public function __toString() {
@@ -233,13 +240,21 @@ class Config implements ResourceInterface, TranslatableInterface {
     public function setPerformanceTracking(bool $performanceTracking): void {
         $this->performanceTracking = $performanceTracking;
     }
-    
+
     public function getUtf8(): bool {
         return $this->utf8;
     }
 
     public function setUtf8(bool $utf8): void {
         $this->utf8 = $utf8;
+    }
+
+    public function getXml(): bool {
+        return $this->xml;
+    }
+
+    public function setXml(bool $xml): void {
+        $this->xml = $xml;
     }
 
     public function getUnicode(): bool {
@@ -265,22 +280,28 @@ class Config implements ResourceInterface, TranslatableInterface {
     public function getShippingText(): ?string {
         return $this->getTranslation()->getShippingText();
     }
-    
-    public function getApiParams(): array {
-        return [
-            'debug' => (bool)$this->getDebug(),
-            'delay' => $this->getDelay(),
-            'flash' => (bool)$this->getFlash(),
-            'foreign_id' => $this->getForeignId(),
-            'from' => $this->getTranslation()->getFrom(),
-            'label' => $this->getLabel(),
-            'no_reload' => (bool)$this->getNoReload(),
-            'performance_tracking' => (bool)$this->getPerformanceTracking(),
-            'ttl' => $this->getTtl(),
-            'udh' => $this->getUdh(),
-            'unicode' => (bool)$this->getUnicode(),
-            'utf8' => (bool)$this->getUtf8(),
-        ];
+
+    public function getSmsParams(): SmsParams {
+        return (new SmsParams)
+            ->setDebug($this->getDebug())
+            ->setDelay($this->getDelay())
+            ->setFlash($this->getFlash())
+            ->setForeignId($this->getForeignId())
+            ->setFrom($this->getFrom())
+            ->setLabel($this->getLabel())
+            ->setNoReload($this->getNoReload())
+            ->setPerformanceTracking($this->getPerformanceTracking())
+            ->setTtl($this->getTtl())
+            ->setUdh($this->getUdh())
+            ->setUnicode($this->getUnicode())
+            ->setUtf8($this->getUtf8());
+    }
+
+    public function getVoiceParams(): VoiceParams {
+        return (new VoiceParams)
+            ->setDebug($this->getDelay())
+            ->setFrom($this->getFrom())
+            ->setXml($this->getXml());
     }
 
     /** {@inheritdoc} */

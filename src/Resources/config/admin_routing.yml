@@ -13,13 +13,13 @@ sms77_admin_config:
   type: sylius.resource
   prefix: admin/sms77
 
-sms77_admin_message:
+sms77_admin_sms:
   resource: |
-    alias: sms77.message
+    alias: sms77.sms
     section: admin
     templates: '@SyliusAdmin/Crud'
     except: ['update']
-    grid: sms77_admin_message
+    grid: sms77_admin_sms
     permission: true
     vars:
         all:
@@ -27,10 +27,32 @@ sms77_admin_message:
   type: sylius.resource
   prefix: admin/sms77
 
-sms77_admin_message_show:
-  path: /admin/sms77/messages/{id}
-  methods: [GET]
+sms77_admin_sms_show:
   defaults:
-    _controller: sms77.controller.message:showAction
+    _controller: sms77.controller.sms:showAction
     _sylius:
       template: '@Sms77SyliusPlugin/Admin/Message/Show/index.html.twig'
+  methods: [ GET ]
+  path: /admin/sms77/messages/{id}
+
+sms77_admin_voice:
+  resource: |
+    alias: sms77.voice
+    section: admin
+    templates: '@SyliusAdmin/Crud'
+    except: ['update']
+    grid: sms77_admin_voice
+    permission: true
+    vars:
+        all:
+          icon: phone
+  type: sylius.resource
+  prefix: admin/sms77
+
+sms77_admin_voice_show:
+  defaults:
+    _controller: sms77.controller.voice:showAction # TODO!
+    _sylius:
+      template: '@Sms77SyliusPlugin/Admin/Message/Show/index.html.twig'
+  methods: [ GET ]
+  path: /admin/sms77/voices/{id}

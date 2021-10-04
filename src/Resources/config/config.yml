@@ -90,6 +90,12 @@ sylius_grid:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 25
           type: twig
+        xml:
+          label: sms77.xml
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+          position: 26
+          type: twig
         utf8:
           label: sms77.utf8
           options:
@@ -111,7 +117,7 @@ sylius_grid:
       sorting:
         enabled: desc
 
-    sms77_admin_message:
+    sms77_admin_sms: &admin_sms
       actions:
         bulk:
           delete:
@@ -130,6 +136,46 @@ sylius_grid:
         name: doctrine/orm
         options:
           class: Sms77\SyliusPlugin\Entity\Message
+      fields:
+        config:
+          label: sms77.config
+          type: string
+        customerGroups:
+          label: sms77.customerGroupsDetailed
+          options:
+            template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
+          type: twig
+        from:
+          label: sms77.from
+          type: string
+        msg:
+          label: sms77.msg
+          type: string
+        response:
+          label: sms77.response
+          options:
+            template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
+          type: twig
+
+    sms77_admin_voice:
+      actions:
+        bulk:
+          delete:
+            icon: trash
+            label: sylius.ui.delete
+            type: delete
+        main:
+          create:
+            type: create
+        item:
+          delete:
+            type: delete
+          show:
+            type: show
+      driver:
+        name: doctrine/orm
+        options:
+          class: Sms77\SyliusPlugin\Entity\Voice
       fields:
         config:
           label: sms77.config

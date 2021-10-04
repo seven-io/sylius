@@ -3,16 +3,21 @@ sylius_resource:
     sms77.config:
       driver: doctrine/orm
       classes:
-        model: Sms77\SyliusPlugin\Entity\Config
         form: Sms77\SyliusPlugin\Form\Type\ConfigType
+        model: Sms77\SyliusPlugin\Entity\Config
         repository: Sms77\SyliusPlugin\Repository\ConfigRepository
       translation:
         classes:
-          model: Sms77\SyliusPlugin\Entity\ConfigTranslation
           form: Sms77\SyliusPlugin\Form\Type\ConfigTranslationType
-    sms77.message:
-      driver: doctrine/orm
+          model: Sms77\SyliusPlugin\Entity\ConfigTranslation
+    sms77.sms:
       classes:
+        controller: Sms77\SyliusPlugin\Controller\SmsController
+        form: Sms77\SyliusPlugin\Form\Type\SmsType
         model: Sms77\SyliusPlugin\Entity\Message
-        controller: Sms77\SyliusPlugin\Controller\MessageController
-        form: Sms77\SyliusPlugin\Form\Type\MessageType
+      driver: doctrine/orm
+    sms77.voice:
+      classes:
+        controller: Sms77\SyliusPlugin\Controller\VoiceController
+        form: Sms77\SyliusPlugin\Form\Type\VoiceType
+        model: Sms77\SyliusPlugin\Entity\Voice

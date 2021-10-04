@@ -1,7 +1,7 @@
 {% extends '@SyliusAdmin/layout.html.twig' %}
 
 {% block title %}
-    {{ 'sylius.ui.message'|trans }} #{{ message.id }} {{ parent() }}
+    {{ 'sylius.ui.message'|trans }} #{{ resource.id }} {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -18,7 +18,7 @@
             <tbody>
             <tr>
                 <td data-label='{{ 'sms77.response'|trans }}'>
-                    {% for response in message.response %}
+                    {% for response in resource.response %}
                         <pre style='white-space: normal'>
                             {{ response|json_encode(constant('JSON_PRETTY_PRINT')) }}
                         </pre>
@@ -26,13 +26,13 @@
                 </td>
                 <td data-label='{{ 'sms77.customerGroups'|trans }}'>
                     {% include '@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig'
-                        with {'data': message.customerGroups} %}
+                        with {'data': resource.customerGroups} %}
                 </td>
                 <td data-label='{{ 'sms77.from'|trans }}'>
-                    {{ message.from }}
+                    {{ resource.from }}
                 </td>
                 <td data-label='{{ 'sms77.ui.config'|trans }}'>
-                    {{ message.config.name ? message.config.name : message.config.id }}
+                    {{ resource.config.name ? resource.config.name : resource.config.id }}
                 </td>
             </tr>
             </tbody>

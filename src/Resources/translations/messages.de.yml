@@ -23,9 +23,13 @@ sms77:
     config: Konfiguration
     configs: Konfigurationen
     edit_config: Konfiguration bearbeiten
-    messages: Nachrichten
     new_config: Neue Konfiguration
-    new_message: SMS verfassen
+    new_sms: SMS verfassen
+    new_voice: Neue Sprachnachricht
+    sms: SMS
+    text_to_speech: Text-zu-Sprache
+    voice: Sprachnachrichten
   unicode: Unicode
   useDefault: Standard-Gateway nehmen
   utf8: UTF8
+  xml: XML

@@ -22,7 +22,7 @@ class AdminMenuListener {
 
         $newSubmenu = $menu
             ->addChild('sms77')
-            ->setLabel('Sms77');
+            ->setLabel('sms77');
 
         $newSubmenu
             ->addChild('sms77-config')
@@ -31,7 +31,12 @@ class AdminMenuListener {
 
         $newSubmenu
             ->addChild('sms77-write')
-            ->setLabel($this->translator->trans('sms77.ui.messages'))
-            ->setUri($this->router->generate('sms77_admin_message_index'));
+            ->setLabel($this->translator->trans('sms77.ui.sms'))
+            ->setUri($this->router->generate('sms77_admin_sms_index'));
+
+        $newSubmenu
+            ->addChild('sms77-write-voice')
+            ->setLabel($this->translator->trans('sms77.ui.text_to_speech'))
+            ->setUri($this->router->generate('sms77_admin_voice_index'));
     }
 }

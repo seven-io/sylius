@@ -21,6 +21,7 @@ class ConfigType extends AbstractResourceType {
             ->add('performanceTracking', CheckboxType::class, ['required' => false])
             ->add('unicode', CheckboxType::class, ['required' => false])
             ->add('utf8', CheckboxType::class, ['required' => false])
+            ->add('xml', CheckboxType::class, ['required' => false])
             ->add('label', TextType::class,
                 ['required' => false, 'attr' => ['maxlength' => 100]])
             ->add('foreignId', TextType::class,

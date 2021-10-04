@@ -21,14 +21,10 @@ final class ConfigListener {
 
     private function handleEvent(LifecycleEventArgs $event): void {
         $config = $event->getEntity();
-        if ($config instanceof ConfigTranslation) {
-            $config = $config->getTranslatable();
-        }
+        if ($config instanceof ConfigTranslation) $config = $config->getTranslatable();
 
         /** @var Config $config */
-        if (!$config instanceof Config || !$config->getEnabled()) {
-            return;
-        }
+        if (!$config instanceof Config || !$config->getEnabled()) return;
 
         $configRepo = $this->configManager->getRepository(Config::class);
 
@@ -38,9 +34,7 @@ final class ConfigListener {
 
         if (count($configs)) {
             foreach ($configs as $_config) {
-                if (!$_config->getEnabled()) {
-                    continue;
-                }
+                if (!$_config->getEnabled()) continue;
 
                 $_config->setEnabled(false);
 

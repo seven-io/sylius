@@ -1,41 +1,51 @@
 services:
   Sms77\SyliusPlugin\:
+    exclude: '../../../src/{DependencyInjection,Migrations,Entity,Tests,Kernel.php}'
     resource: '../../../src/*'
-    exclude: '../../../src/{DependencyInjection,Migrations,Entity,Tests,MessageController.php,Kernel.php}'
 
   Sms77\SyliusPlugin\Menu\AdminMenuListener:
+    arguments: [ '@router', '@translator' ]
     class: Sms77\SyliusPlugin\Menu\AdminMenuListener
-    arguments: ['@router', '@translator']
     tags:
       - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 
-  Sms77\SyliusPlugin\Controller\MessageController:
-    autowire: false
-    public: true
-
   Sms77\SyliusPlugin\EventListener\ConfigListener:
+    arguments: [ '@sms77.manager.config' ]
     class: Sms77\SyliusPlugin\EventListener\ConfigListener
-    arguments: ['@sms77.manager.config']
     tags:
       - { name: doctrine.event_listener, event: preUpdate }
       - { name: doctrine.event_listener, event: prePersist }
 
-  Sms77\SyliusPlugin\Form\Type\MessageType:
-    class: Sms77\SyliusPlugin\Form\Type\MessageType
-    tags:
-      - { name: form.type }
-    arguments: ['%sms77.model.message.class%', ['sylius']]
-
   Sms77\SyliusPlugin\Form\Type\ConfigType:
+    arguments: [ '%sms77.model.config.class%', [ 'sylius' ] ]
     class: Sms77\SyliusPlugin\Form\Type\ConfigType
     tags:
       - { name: form.type }
-    arguments: ['%sms77.model.config.class%', ['sylius']]
 
   Sms77\SyliusPlugin\Form\Type\ConfigTranslationType:
+    arguments: [ '%sms77.model.config_translation.class%', [ 'sylius' ] ]
     class: Sms77\SyliusPlugin\Form\Type\ConfigTranslationType
     tags:
       - { name: form.type }
-    arguments: ['%sms77.model.config_translation.class%', ['sylius']]
+
+#  Sms77\SyliusPlugin\Controller\SmsController:
+#    autowire: false
+#    public: true
+#
+#  Sms77\SyliusPlugin\Controller\VoiceController:
+#    autowire: false
+#    public: true
+
+  Sms77\SyliusPlugin\Form\Type\SmsType:
+    arguments: [ '%sms77.model.sms.class%', [ 'sylius' ] ]
+    class: Sms77\SyliusPlugin\Form\Type\SmsType
+    tags:
+      - { name: form.type }
+
+  Sms77\SyliusPlugin\Form\Type\VoiceType:
+    arguments: [ '%sms77.model.voice.class%', [ 'sylius' ] ]
+    class: Sms77\SyliusPlugin\Form\Type\VoiceType
+    tags:
+      - { name: form.type }
 
   Sms77\SyliusPlugin\Repository\ConfigRepository: '@sms77.repository.config'

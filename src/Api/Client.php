@@ -6,8 +6,8 @@ use Sms77\Api\Client as ApiClient;
 use Sms77\SyliusPlugin\Entity\Config;
 use Sms77\SyliusPlugin\Repository\ConfigRepository;
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Core\OrderShippingStates;
 use Sylius\Component\Core\Model\ShipmentInterface;
+use Sylius\Component\Core\OrderShippingStates;
 
 class Client {
     /* @var Config $configuration */
@@ -30,33 +30,32 @@ class Client {
 
         $client = $this->initApi();
 
-        if (null === $to || null === $client) {
-            return;
-        }
+        if (null === $to || null === $client) return;
 
-        $client->sms($to, $text, $this->configuration->getApiParams());
+        $params = $this->configuration->getSmsParams()
+            ->setText($text)
+            ->setTo($to);
+
+        $client->sms($params);
     }
 
     private function orderToPhone(OrderInterface $order): ?string {
         $shippingAddress = $order->getShippingAddress();
         $billingAddress = $order->getBillingAddress();
 
-        if (null !== $shippingAddress && null !== $shippingAddress->getPhoneNumber()) {
+        if (null !== $shippingAddress && null !== $shippingAddress->getPhoneNumber())
             return $shippingAddress->getPhoneNumber();
-        }
 
-        if (null !== $billingAddress && null !== $billingAddress->getPhoneNumber()) {
+        if (null !== $billingAddress && null !== $billingAddress->getPhoneNumber())
             return $billingAddress->getPhoneNumber();
-        }
 
         return null;
     }
 
     private function stateToText(string $state): ?string {
         if (null !== $this->configuration
-            && OrderShippingStates::STATE_SHIPPED === $state) {
+            && OrderShippingStates::STATE_SHIPPED === $state)
             return $this->configuration->getShippingText();
-        }
 
         return null;
     }
@@ -67,10 +66,7 @@ class Client {
         if (null !== $this->configuration) {
             $apiKey = $this->configuration->getApiKey();
 
-            if (isset($apiKey)) {
-                $client = new ApiClient(
-                    $this->configuration->getApiKey(), 'sylius');
-            }
+            if (isset($apiKey)) $client = new ApiClient($apiKey, 'sylius');
         }
 
         return $client;
