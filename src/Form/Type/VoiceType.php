@@ -1,9 +1,7 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Form\Type;
+namespace Seven\SyliusPlugin\Form\Type;
 
-use Sms77\SyliusPlugin\Entity\AbstractMessage;
-use Sms77\SyliusPlugin\Entity\Message;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Customer\Model\CustomerGroup;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -32,6 +30,6 @@ class VoiceType extends AbstractMessageType {
 
     /** {@inheritdoc} */
     public function getBlockPrefix(): ?string {
-        return 'sms77_voice';
+        return 'seven_voice';
     }
 }

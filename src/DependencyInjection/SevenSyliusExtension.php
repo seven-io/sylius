@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\DependencyInjection;
+namespace Seven\SyliusPlugin\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-final class Sms77SyliusExtension extends Extension {
+final class SevenSyliusExtension extends Extension {
     /**
      * {@inheritdoc}
      */

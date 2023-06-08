@@ -1,35 +1,35 @@
 imports:
-  - { resource: "@Sms77SyliusPlugin/Resources/config/resources.yml" }
-  - { resource: "@Sms77SyliusPlugin/Resources/config/services.yml" }
-  - { resource: "@Sms77SyliusPlugin/Resources/config/packages/winzou_state_machine.yml" }
-  - { resource: "@Sms77SyliusPlugin/Resources/config/packages/sylius_ui.yml" }
+  - { resource: "@SevenSyliusPlugin/Resources/config/resources.yml" }
+  - { resource: "@SevenSyliusPlugin/Resources/config/services.yml" }
+  - { resource: "@SevenSyliusPlugin/Resources/config/packages/winzou_state_machine.yml" }
+  - { resource: "@SevenSyliusPlugin/Resources/config/packages/sylius_ui.yml" }
 
 sylius_grid:
   grids:
-    sms77_admin_config:
+    seven_admin_config:
       driver:
         name: doctrine/orm
         options:
-          class: Sms77\SyliusPlugin\Entity\Config
+          class: Seven\SyliusPlugin\Entity\Config
       fields:
         apiKey:
-          label: sms77.apiKey
+          label: sevenapiKey
           options:
-            template: "@Sms77SyliusPlugin/Ui/Grid/Field/collapse.html.twig"
+            template: "@SevenSyliusPlugin/Ui/Grid/Field/collapse.html.twig"
           position: 10
           type: twig
         debug:
-          label: sms77.debug
+          label: sevendebug
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 14
           type: twig
         delay:
-          label: sms77.delay
+          label: sevendelay
           position: 15
           type: string
         enabled:
-          label: sms77.enabled
+          label: sevenenabled
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 12
@@ -38,66 +38,66 @@ sylius_grid:
         flash:
           position: 16
           type: twig
-          label: sms77.flash
+          label: sevenflash
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
         foreignId:
-          label: sms77.foreignId
+          label: sevenforeignId
           position: 17
           type: string
         from:
-          label: sms77.from
+          label: sevenfrom
           position: 18
           type: string
         label:
-          label: sms77.label
+          label: sevenlabel
           position: 19
           type: string
         name:
-          label: sms77.name
+          label: sevenname
           position: 13
           sortable: ~
           type: string
         noReload:
-          label: sms77.noReload
+          label: sevennoReload
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 20
           type: twig
         onShipping:
-          label: sms77.onShipping
+          label: sevenonShipping
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 21
           type: twig
         performanceTracking:
-          label: sms77.performanceTracking
+          label: sevenperformanceTracking
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 22
           type: twig
         ttl:
-          label: sms77.ttl
+          label: seventtl
           position: 23
           type: string
         udh:
-          label: sms77.udh
+          label: sevenudh
           position: 24
           type: string
         unicode:
-          label: sms77.unicode
+          label: sevenunicode
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 25
           type: twig
         xml:
-          label: sms77.xml
+          label: sevenxml
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 26
           type: twig
         utf8:
-          label: sms77.utf8
+          label: sevenutf8
           options:
             template: "@SyliusUi/Grid/Field/enabled.html.twig"
           position: 26
@@ -117,7 +117,7 @@ sylius_grid:
       sorting:
         enabled: desc
 
-    sms77_admin_sms: &admin_sms
+    seven_admin_sms: &admin_sms
       actions:
         bulk:
           delete:
@@ -135,29 +135,29 @@ sylius_grid:
       driver:
         name: doctrine/orm
         options:
-          class: Sms77\SyliusPlugin\Entity\Message
+          class: Seven\SyliusPlugin\Entity\Message
       fields:
         config:
-          label: sms77.config
+          label: sevenconfig
           type: string
         customerGroups:
-          label: sms77.customerGroupsDetailed
+          label: sevencustomerGroupsDetailed
           options:
-            template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
+            template: "@SevenSyliusPlugin/Ui/Grid/Field/stringify.html.twig"
           type: twig
         from:
-          label: sms77.from
+          label: sevenfrom
           type: string
         msg:
-          label: sms77.msg
+          label: sevenmsg
           type: string
         response:
-          label: sms77.response
+          label: sevenresponse
           options:
-            template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
+            template: "@SevenSyliusPlugin/Admin/Message/Index/msg_response.html.twig"
           type: twig
 
-    sms77_admin_voice:
+    seven_admin_voice:
       actions:
         bulk:
           delete:
@@ -175,24 +175,24 @@ sylius_grid:
       driver:
         name: doctrine/orm
         options:
-          class: Sms77\SyliusPlugin\Entity\Voice
+          class: Seven\SyliusPlugin\Entity\Voice
       fields:
         config:
-          label: sms77.config
+          label: sevenconfig
           type: string
         customerGroups:
-          label: sms77.customerGroupsDetailed
+          label: sevencustomerGroupsDetailed
           options:
-            template: "@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig"
+            template: "@SevenSyliusPlugin/Ui/Grid/Field/stringify.html.twig"
           type: twig
         from:
-          label: sms77.from
+          label: sevenfrom
           type: string
         msg:
-          label: sms77.msg
+          label: sevenmsg
           type: string
         response:
-          label: sms77.response
+          label: sevenresponse
           options:
-            template: "@Sms77SyliusPlugin/Admin/Message/Index/msg_response.html.twig"
+            template: "@SevenSyliusPlugin/Admin/Message/Index/msg_response.html.twig"
           type: twig

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Api;
+namespace Seven\SyliusPlugin\Api;
 
 use Sms77\Api\Client as ApiClient;
-use Sms77\SyliusPlugin\Entity\Config;
-use Sms77\SyliusPlugin\Repository\ConfigRepository;
+use Seven\SyliusPlugin\Entity\Config;
+use Seven\SyliusPlugin\Repository\ConfigRepository;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\OrderShippingStates;

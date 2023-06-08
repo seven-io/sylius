@@ -9,29 +9,29 @@
         <table class='ui celled table'>
             <thead class="full-width">
             <tr>
-                <th class='ten wide'>{{ 'sms77.response'|trans }}</th>
-                <th class='two wide'>{{ 'sms77.customerGroups'|trans }}</th>
-                <th class='two wide'>{{ 'sms77.from'|trans }}</th>
-                <th class='two wide'>{{ 'sms77.ui.config'|trans }}</th>
+                <th class='ten wide'>{{ 'seven.response'|trans }}</th>
+                <th class='two wide'>{{ 'seven.customerGroups'|trans }}</th>
+                <th class='two wide'>{{ 'seven.from'|trans }}</th>
+                <th class='two wide'>{{ 'seven.ui.config'|trans }}</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td data-label='{{ 'sms77.response'|trans }}'>
+                <td data-label='{{ 'seven.response'|trans }}'>
                     {% for response in resource.response %}
                         <pre style='white-space: normal'>
                             {{ response|json_encode(constant('JSON_PRETTY_PRINT')) }}
                         </pre>
                     {% endfor %}
                 </td>
-                <td data-label='{{ 'sms77.customerGroups'|trans }}'>
-                    {% include '@Sms77SyliusPlugin/Ui/Grid/Field/stringify.html.twig'
+                <td data-label='{{ 'seven.customerGroups'|trans }}'>
+                    {% include '@SevenSyliusPlugin/Ui/Grid/Field/stringify.html.twig'
                         with {'data': resource.customerGroups} %}
                 </td>
-                <td data-label='{{ 'sms77.from'|trans }}'>
+                <td data-label='{{ 'seven.from'|trans }}'>
                     {{ resource.from }}
                 </td>
-                <td data-label='{{ 'sms77.ui.config'|trans }}'>
+                <td data-label='{{ 'seven.ui.config'|trans }}'>
                     {{ resource.config.name ? resource.config.name : resource.config.id }}
                 </td>
             </tr>

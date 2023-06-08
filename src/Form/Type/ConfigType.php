@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Form\Type;
+namespace Seven\SyliusPlugin\Form\Type;
 
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
@@ -40,6 +40,6 @@ class ConfigType extends AbstractResourceType {
 
     /** {@inheritdoc} */
     public function getBlockPrefix(): ?string {
-        return 'sms77_config';
+        return 'seven_config';
     }
 }

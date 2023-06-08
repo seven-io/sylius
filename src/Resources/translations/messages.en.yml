@@ -1,4 +1,4 @@
-sms77:
+seven:
   apiKey: API Key
   config: Configuration
   customerGroupsDetailed: Customer groups (limits sending only to customers from the specified groups)

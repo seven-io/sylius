@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Controller;
+namespace Seven\SyliusPlugin\Controller;
 
 use Sms77\Api\Params\SmsParams;
 use Sms77\Api\Params\VoiceParams;
-use Sms77\SyliusPlugin\Entity\Config;
+use Seven\SyliusPlugin\Entity\Config;
 
 class VoiceController extends AbstractController {
     /**

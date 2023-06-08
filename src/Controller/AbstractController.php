@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Controller;
+namespace Seven\SyliusPlugin\Controller;
 
 use FOS\RestBundle\View\View;
 use Sms77\Api\Client;
 use Sms77\Api\Params\SmsParams;
 use Sms77\Api\Params\VoiceParams;
-use Sms77\SyliusPlugin\Entity\AbstractMessage;
-use Sms77\SyliusPlugin\Entity\Config;
-use Sms77\SyliusPlugin\Entity\Message;
+use Seven\SyliusPlugin\Entity\AbstractMessage;
+use Seven\SyliusPlugin\Entity\Config;
+use Seven\SyliusPlugin\Entity\Message;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\CustomerRepository;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Component\Core\Model\Customer;
@@ -31,7 +31,7 @@ abstract class AbstractController extends ResourceController {
         $newResource = $this->newResourceFactory->create($configuration, $this->factory);
 
         $cfgId = $request->get('config');
-        $cfgRepo = $this->get('sms77.repository.config');
+        $cfgRepo = $this->get('seven.repository.config');
         $newResource->setConfig(
             $cfgId ? $cfgRepo->find($cfgId) : $cfgRepo->findEnabled());
 
@@ -172,7 +172,7 @@ abstract class AbstractController extends ResourceController {
         return new Response($this->container->get('twig')->render(
             $configuration->getTemplate(ResourceActions::INDEX . '.html'), [
                 'configuration' => $configuration,
-                'message_configurations' => $this->get('sms77.repository.config')->findAll(),
+                'message_configurations' => $this->get('seven.repository.config')->findAll(),
                 'metadata' => $this->metadata,
                 'resources' => $resources,
                 $this->metadata->getPluralName() => $resources,

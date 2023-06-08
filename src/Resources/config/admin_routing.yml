@@ -1,58 +1,58 @@
-sms77_admin_config:
+seven_admin_config:
   resource: |
-    alias: sms77.config
+    alias: seven.config
     section: admin
     templates: '@SyliusAdmin/Crud'
     redirect: update
     except: ['show']
-    grid: sms77_admin_config
+    grid: seven_admin_config
     permission: true
     vars:
         all:
           icon: options
   type: sylius.resource
-  prefix: admin/sms77
+  prefix: admin/seven
 
-sms77_admin_sms:
+seven_admin_sms:
   resource: |
-    alias: sms77.sms
+    alias: seven.sms
     section: admin
     templates: '@SyliusAdmin/Crud'
     except: ['update']
-    grid: sms77_admin_sms
+    grid: seven_admin_sms
     permission: true
     vars:
         all:
           icon: envelope
   type: sylius.resource
-  prefix: admin/sms77
+  prefix: admin/seven
 
-sms77_admin_sms_show:
+seven_admin_sms_show:
   defaults:
-    _controller: sms77.controller.sms:showAction
+    _controller: seven.controller.sms:showAction
     _sylius:
-      template: '@Sms77SyliusPlugin/Admin/Message/Show/index.html.twig'
+      template: '@SevenSyliusPlugin/Admin/Message/Show/index.html.twig'
   methods: [ GET ]
-  path: /admin/sms77/messages/{id}
+  path: /admin/seven/messages/{id}
 
-sms77_admin_voice:
+seven_admin_voice:
   resource: |
-    alias: sms77.voice
+    alias: seven.voice
     section: admin
     templates: '@SyliusAdmin/Crud'
     except: ['update']
-    grid: sms77_admin_voice
+    grid: seven_admin_voice
     permission: true
     vars:
         all:
           icon: phone
   type: sylius.resource
-  prefix: admin/sms77
+  prefix: admin/seven
 
-sms77_admin_voice_show:
+seven_admin_voice_show:
   defaults:
-    _controller: sms77.controller.voice:showAction # TODO!
+    _controller: seven.controller.voice:showAction # TODO!
     _sylius:
-      template: '@Sms77SyliusPlugin/Admin/Message/Show/index.html.twig'
+      template: '@SevenSyliusPlugin/Admin/Message/Show/index.html.twig'
   methods: [ GET ]
-  path: /admin/sms77/voices/{id}
+  path: /admin/seven/voices/{id}

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Repository;
+namespace Seven\SyliusPlugin\Repository;
 
-use Sms77\SyliusPlugin\Entity\Config;
+use Seven\SyliusPlugin\Entity\Config;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class ConfigRepository extends EntityRepository implements ConfigRepositoryInterface {

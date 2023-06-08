@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Entity;
+namespace Seven\SyliusPlugin\Entity;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -13,7 +13,7 @@ use Sylius\Component\Shipping\Model\ShippingMethodTranslation;
 
 /**
  * @Entity
- * @Table(name="sms77_config_translation")
+ * @Table(name="seven_config_translation")
  */
 class ConfigTranslation extends AbstractTranslation implements ResourceInterface {
     /**

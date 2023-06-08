@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Form\Type;
+namespace Seven\SyliusPlugin\Form\Type;
 
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -12,13 +12,13 @@ class ConfigTranslationType extends AbstractResourceType {
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
             ->add('from', TextType::class, [
-                'attr' => ['placeholder' => 'sms77.useDefault', 'required' => false],
+                'attr' => ['placeholder' => 'seven.useDefault', 'required' => false],
             ])
             ->add('shippingText', TextareaType::class);
     }
 
     /** {@inheritdoc} */
     public function getBlockPrefix(): ?string {
-        return 'sms77_config_translation';
+        return 'seven_config_translation';
     }
 }

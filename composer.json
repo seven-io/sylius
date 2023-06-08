@@ -1,14 +1,14 @@
 {
     "authors": [
         {
-            "email": "matthiez@gmail.com",
+            "email": "a.matthies@seven.io",
             "name": "André Matthies",
             "role": "Developer"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Sms77\\SyliusPlugin\\": "src/"
+            "Seven\\SyliusPlugin\\": "src/"
         }
     },
     "config": {
@@ -21,7 +21,7 @@
         "symfony/dom-crawler": "4.1.8",
         "symfony/routing": "4.1.8"
     },
-    "description": "sms77.io plugin for Sylius applications.",
+    "description": "seven.io plugin for Sylius applications.",
     "extra": {
         "branch-alias": {
             "dev-master": "1.10-dev"
@@ -37,7 +37,7 @@
     ],
     "license": "MIT",
     "minimum-stability": "dev",
-    "name": "sms77/sylius-plugin",
+    "name": "seven.io/sylius",
     "prefer-stable": true,
     "require": {
         "php": "^7.4 || ^8.0",
@@ -75,10 +75,10 @@
         "vimeo/psalm": "4.7.1"
     },
     "support": {
-        "docs": "https://github.com/sms77io/sylius",
-        "email": "support@sms77.io",
-        "rss": "https://www.sms77.io/de/feed/",
-        "source": "https://github.com/sms77io/sylius"
+        "docs": "https://github.com/seven-io/sylius",
+        "email": "support@seven.io",
+        "rss": "https://www.seven.io/de/feed/",
+        "source": "https://github.com/seven-io/sylius"
     },
     "type": "sylius-plugin"
 }

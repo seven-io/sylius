@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Form\Type;
+namespace Seven\SyliusPlugin\Form\Type;
 
-use Sms77\SyliusPlugin\Entity\AbstractMessage;
+use Seven\SyliusPlugin\Entity\AbstractMessage;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Customer\Model\CustomerGroup;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

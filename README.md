@@ -1,6 +1,6 @@
-![Sms77 Logo](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png "Sms77 Logo")
+![](https://www.seven.io/wp-content/uploads/Logo.svg "seven Logo")
 
-# Official Sylius Plugin for Sms77.io
+# Official Sylius Plugin for seven.io
 Supports sending SMS and making text-to-speech calls.
 Programmatically send messages by subscribing to Sylius events.<br>
 Send out bulk messages to all of your customers at once.<br>
@@ -9,28 +9,28 @@ Make it even easier for your customers to get informed about order updates and s
 ## Installation
 
 1. Require the package via composer
-    ```composer require sms77/sylius-plugin```
+    ```composer require seven.io/sylius```
 
 2. Add to config/bundles.php
-    ```Sms77\SyliusPlugin\Sms77SyliusPlugin::class => ['all' => true],```
+    ```Seven\SyliusPlugin\SevenSyliusPlugin::class => ['all' => true],```
 
 3. Add to config/routes.yaml
     ```yaml
-    sms77_sylius_plugin:
-        resource: "@Sms77SyliusPlugin/Resources/config/admin_routing.yml"
+    seven_sylius_plugin:
+        resource: "@SevenSyliusPlugin/Resources/config/admin_routing.yml"
     ```
 
 4. Add to config/services.yaml
     ```yaml
     imports:
-        - { resource: "@Sms77SyliusPlugin/Resources/config/config.yml" }
+        - { resource: "@SevenSyliusPlugin/Resources/config/config.yml" }
     ```
 
 5. Make and execute migrations
     ```php bin/console doctrine:migrations:diff```
     ```php bin/console doctrine:migrations:migrate```
      
-6. Navigate to Sms77->Configurations and create your first configuration.
+6. Navigate to Seven->Configurations and create your first configuration.
 
 ### Screenshots
 ![Write SMS](screenshots/write_sms.png "Write SMS")
@@ -42,6 +42,6 @@ Make it even easier for your customers to get informed about order updates and s
 
 ### Support
 
-Need help? Feel free to [contact us](https://www.sms77.io/en/company/contact/).
+Need help? Feel free to [contact us](https://www.seven.io/en/company/contact/).
 
 [![MIT](https://img.shields.io/badge/License-MIT-teal.svg)](LICENSE)

@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\EventListener;
+namespace Seven\SyliusPlugin\EventListener;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Sms77\SyliusPlugin\Entity\Config;
-use Sms77\SyliusPlugin\Entity\ConfigTranslation;
+use Seven\SyliusPlugin\Entity\Config;
+use Seven\SyliusPlugin\Entity\ConfigTranslation;
 
 final class ConfigListener {
     /** @var EntityManager $configManager */

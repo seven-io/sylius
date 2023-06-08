@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Sms77\SyliusPlugin\Entity;
+namespace Seven\SyliusPlugin\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -18,7 +18,7 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 
 /**
  * @Entity
- * @Table(name="sms77_config")
+ * @Table(name="seven_config")
  */
 class Config implements ResourceInterface, TranslatableInterface {
     use TranslatableTrait {

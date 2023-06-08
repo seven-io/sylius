@@ -1,7 +1,7 @@
 sylius_ui:
   events:
-    sms77.admin.message.index.header: &admin_message_index_header
+    seven.admin.message.index.header: &admin_message_index_header
       blocks:
-        sms77_configs: '@Sms77SyliusPlugin\Admin\Message\Index\configs.html.twig'
-    sms77.admin.voice.index.header:
+        seven_configs: '@SevenSyliusPlugin\Admin\Message\Index\configs.html.twig'
+    seven.admin.voice.index.header:
       <<: *admin_message_index_header
