@@ -9,8 +9,6 @@ class VoiceController extends AbstractController {
     protected function buildParams(Config $cfg): VoiceParams {
         $params = new VoiceParams;
 
-        $params->setXml($cfg->getXml());
-
         return $params;
     }
 }

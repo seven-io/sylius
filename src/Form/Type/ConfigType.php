@@ -15,13 +15,9 @@ class ConfigType extends AbstractResourceType {
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
             ->add('apiKey', TextType::class)
-            ->add('debug', CheckboxType::class, ['required' => false])
             ->add('flash', CheckboxType::class, ['required' => false])
-            ->add('noReload', CheckboxType::class, ['required' => false])
             ->add('performanceTracking', CheckboxType::class, ['required' => false])
             ->add('unicode', CheckboxType::class, ['required' => false])
-            ->add('utf8', CheckboxType::class, ['required' => false])
-            ->add('xml', CheckboxType::class, ['required' => false])
             ->add('label', TextType::class,
                 ['required' => false, 'attr' => ['maxlength' => 100]])
             ->add('foreignId', TextType::class,

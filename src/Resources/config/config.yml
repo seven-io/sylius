@@ -18,12 +18,6 @@ sylius_grid:
             template: "@SevenSyliusPlugin/Ui/Grid/Field/collapse.html.twig"
           position: 10
           type: twig
-        debug:
-          label: sevendebug
-          options:
-            template: "@SyliusUi/Grid/Field/enabled.html.twig"
-          position: 14
-          type: twig
         delay:
           label: sevendelay
           position: 15
@@ -58,12 +52,6 @@ sylius_grid:
           position: 13
           sortable: ~
           type: string
-        noReload:
-          label: sevennoReload
-          options:
-            template: "@SyliusUi/Grid/Field/enabled.html.twig"
-          position: 20
-          type: twig
         onShipping:
           label: sevenonShipping
           options:
@@ -84,24 +72,6 @@ sylius_grid:
           label: sevenudh
           position: 24
           type: string
-        unicode:
-          label: sevenunicode
-          options:
-            template: "@SyliusUi/Grid/Field/enabled.html.twig"
-          position: 25
-          type: twig
-        xml:
-          label: sevenxml
-          options:
-            template: "@SyliusUi/Grid/Field/enabled.html.twig"
-          position: 26
-          type: twig
-        utf8:
-          label: sevenutf8
-          options:
-            template: "@SyliusUi/Grid/Field/enabled.html.twig"
-          position: 26
-          type: twig
       actions:
         bulk:
           delete:

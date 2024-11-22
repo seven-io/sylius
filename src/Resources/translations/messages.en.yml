@@ -3,7 +3,6 @@ seven:
   config: Configuration
   customerGroupsDetailed: Customer groups (limits sending only to customers from the specified groups)
   customerGroups: Customer groups
-  debug: Debug
   delay: Delay
   enabled: Enabled
   flash: Flash
@@ -11,7 +10,6 @@ seven:
   label: Label
   name: Name
   msg: Message
-  noReload: No Reload
   onShipping: On Shipping
   one_or_more_responses: Response(s)
   performanceTracking: Performance Tracking
@@ -29,7 +27,4 @@ seven:
     sms: SMS
     text_to_speech: Text-to-Speech
     voices: Voice Messages
-  unicode: Unicode
   useDefault: Use gateway default
-  utf8: UTF8
-  xml: XML
