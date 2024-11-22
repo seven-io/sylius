@@ -27,96 +27,79 @@ class Config implements ResourceInterface, TranslatableInterface {
 
     /**
      * @Column(type="string")
-     * @var string $apiKey
      */
-    protected $apiKey;
+    protected string $apiKey;
     /**
      * @Column(type="string", nullable=true)
-     * @var string $name
      */
-    protected $name;
+    protected string $name;
     /**
      * @Column(type="integer")
      * @Id()
      * @GeneratedValue()
-     * @var integer $id
      */
-    protected $id;
+    protected int $id;
     /**
      * @Column(type="boolean")
-     * @var bool $onShipping
      */
-    protected $onShipping = false;
+    protected bool $onShipping = false;
     /**
      * @Column(type="boolean")
-     * @var bool $enabled
      */
-    protected $enabled = true;
+    protected bool $enabled = true;
     /**
      * @Column(type="boolean")
-     * @var bool $debug
      */
-    protected $debug = false;
+    protected bool $debug = false;
     /**
      * @Column(type="boolean")
-     * @var bool $flash
      */
     protected $flash = false;
     /**
      * @Column(type="boolean", name="no_reload")
-     * @var bool $noReload
      */
     protected $noReload = false;
     /**
      * @Column(type="boolean")
-     * @var bool $utf8
      */
-    protected $utf8 = false;
+    protected bool $utf8 = false;
     /**
      * @Column(type="boolean")
-     * @var bool $unicode
      */
-    protected $unicode = false;
+    protected bool $unicode = false;
     /**
      * @Column(type="boolean", name="performance_tracking")
-     * @var bool $performanceTracking
      */
-    protected $performanceTracking = false;
+    protected bool $performanceTracking = false;
     /**
-     * @var Message[] $apiKey
+     * @var Message[] $messages
      * @ORM\OneToMany(targetEntity="Message", mappedBy="config")
      */
-    protected $messages;
+    protected array|ArrayCollection $messages;
     /**
      * @Column(type="string", nullable=true)
-     * @var string $label
      */
-    protected $label;
+    protected string $label;
     /**
      * @Column(type="string", nullable=true)
-     * @var string $delay
      */
-    protected $delay;
+    protected string $delay;
     /**
      * @Column(type="string", nullable=true)
-     * @var string $udh
      */
-    protected $udh;
+    protected string $udh;
     /**
      * @Column(type="integer", nullable=true)
-     * @var int $ttl
      */
-    protected $ttl;
+    protected int $ttl;
     /**
      * @Column(type="string", nullable=true, name="foreign_id")
-     * @var string $foreignId
      */
-    protected $foreignId;
+    protected string $foreignId;
     /**
      * @Column(type="boolean")
-     * @var bool $xml
      */
-    protected $xml = false;
+    protected bool $xml = false;
 
     public function __construct() {
         $this->initializeTranslationsCollection();

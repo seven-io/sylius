@@ -3,14 +3,9 @@
 namespace Seven\SyliusPlugin\Controller;
 
 use Sms77\Api\Params\SmsParams;
-use Sms77\Api\Params\VoiceParams;
 use Seven\SyliusPlugin\Entity\Config;
 
 class SmsController extends AbstractController {
-    /**
-     * @param Config $cfg
-     * @return SmsParams
-     */
     protected function buildParams(Config $cfg): SmsParams {
         $params = new SmsParams;
 

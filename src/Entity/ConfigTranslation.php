@@ -18,23 +18,20 @@ use Sylius\Component\Shipping\Model\ShippingMethodTranslation;
 class ConfigTranslation extends AbstractTranslation implements ResourceInterface {
     /**
      * @Column(type="string", nullable=true, name="`from`")
-     * @var string | null $from
      */
-    private $from;
+    private ?string $from;
 
     /**
      * @Column(type="integer")
      * @Id()
      * @GeneratedValue()
-     * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @Column(type="string", nullable=true)
-     * @var string | null $shippingText
      */
-    private $shippingText;
+    private ?string $shippingText;
 
     public function getFrom(): ?string {
         return $this->from;

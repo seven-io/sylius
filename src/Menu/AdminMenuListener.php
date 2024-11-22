@@ -7,14 +7,10 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\DataCollectorTranslator;
 
 class AdminMenuListener {
-    /** @var UrlGeneratorInterface $router */
-    private $router;
-    /** @var DataCollectorTranslator $translator */
-    private $translator;
-
-    public function __construct(UrlGeneratorInterface $router, DataCollectorTranslator $translator) {
-        $this->router = $router;
-        $this->translator = $translator;
+    public function __construct(
+        private UrlGeneratorInterface $router,
+        private DataCollectorTranslator $translator
+    ) {
     }
 
     public function addAdminMenuItems(MenuBuilderEvent $event): void {

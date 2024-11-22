@@ -10,8 +10,7 @@ use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\OrderShippingStates;
 
 class Client {
-    /* @var Config $configuration */
-    protected $configuration;
+    protected Config $configuration;
 
     public function __construct(ConfigRepository $configurationRepo) {
         $this->configuration = $configurationRepo->findEnabled();

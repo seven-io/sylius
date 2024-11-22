@@ -11,35 +11,31 @@ use Sylius\Component\Customer\Model\CustomerGroup;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 abstract class AbstractMessage implements ResourceInterface {
-    protected $customerGroups;
+    protected ArrayCollection $customerGroups;
 
-    protected $config;
+    protected ?Config $config;
 
     /**
      * @Column(type="string")
-     * @var string $msg
      */
-    protected $msg = '';
+    protected string $msg = '';
 
     /**
      * @Column(type="string", nullable=true, name="`from`")
-     * @var string|null $from
      */
-    protected $from = null;
+    protected ?string $from = null;
 
     /**
      * @Column(type="json", nullable=true)
-     * @var string | null $response
      */
-    protected $response;
+    protected ?string $response;
 
     /**
      * @Column(type="integer")
      * @Id()
      * @GeneratedValue()
-     * @var int $id
      */
-    protected $id;
+    protected int $id;
 
     public function __construct() {
         $this->customerGroups = new ArrayCollection;
@@ -49,11 +45,11 @@ abstract class AbstractMessage implements ResourceInterface {
         return $this->id;
     }
 
-    public function getResponse() {
+    public function getResponse(): ?string {
         return $this->response;
     }
 
-    public function setResponse($response): void {
+    public function setResponse(?string $response): void {
         $this->response = $response;
     }
 

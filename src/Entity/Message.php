@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping\Entity;
  */
 class Message extends AbstractMessage {
     /** @ORM\ManyToOne(targetEntity="Config", inversedBy="messages") */
-    protected $config;
+    protected ?Config $config;
 
     /**
      * Many Message have Many Configs.
@@ -22,5 +22,5 @@ class Message extends AbstractMessage {
      *      inverseJoinColumns={@ORM\JoinColumn(name="customer_group_id", referencedColumnName="id")}
      *      )
      */
-    protected $customerGroups;
+    protected \Doctrine\Common\Collections\ArrayCollection $customerGroups;
 }

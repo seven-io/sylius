@@ -19,10 +19,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 abstract class AbstractController extends ResourceController {
-    /**
-     * @param Request $request
-     * @return Response
-     */
     public function createAction(Request $request): Response {
         $configuration = $this->requestConfigurationFactory->create(
             $this->metadata, $request);
@@ -95,10 +91,6 @@ abstract class AbstractController extends ResourceController {
             ));
     }
 
-    /**
-     * @param AbstractMessage $newResource
-     * @return array
-     */
     private function getApiResponse(AbstractMessage $newResource): array {
         $customerGroupIds = $newResource->getCustomerGroupIds();
         /** @var CustomerRepository $customerRepo */
@@ -146,16 +138,8 @@ abstract class AbstractController extends ResourceController {
         return $responses;
     }
 
-    /**
-     * @param Config $cfg
-     * @return SmsParams|VoiceParams
-     */
-    abstract protected function buildParams(Config $cfg): object;
+    abstract protected function buildParams(Config $cfg): SmsParams|VoiceParams;
 
-    /**
-     * @param Request $request
-     * @return Response
-     */
     public function indexAction(Request $request): Response {
         $configuration = $this->requestConfigurationFactory->create(
             $this->metadata, $request);

@@ -19,8 +19,8 @@ class Voice extends AbstractMessage {
      *      inverseJoinColumns={@ORM\JoinColumn(name="customer_group_id", referencedColumnName="id")}
      *      )
      */
-    protected $customerGroups;
+    protected \Doctrine\Common\Collections\ArrayCollection $customerGroups;
 
     /** @ORM\ManyToOne(targetEntity="Config", inversedBy="messages") */
-    protected $config;
+    protected ?Config $config;
 }
