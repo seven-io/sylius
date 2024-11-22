@@ -2,12 +2,12 @@
 
 namespace Seven\SyliusPlugin\Controller;
 
-use Sms77\Api\Params\SmsParams;
+use Seven\Api\Resource\Sms\SmsParams;
 use Seven\SyliusPlugin\Entity\Config;
 
 class SmsController extends AbstractController {
     protected function buildParams(Config $cfg): SmsParams {
-        $params = new SmsParams;
+        $params = new SmsParams('', '');
 
         $params->setDelay($cfg->getDelay());
         $params->setFlash($cfg->getFlash());

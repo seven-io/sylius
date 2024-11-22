@@ -2,12 +2,12 @@
 
 namespace Seven\SyliusPlugin\Controller;
 
-use Sms77\Api\Params\VoiceParams;
+use Seven\Api\Resource\Voice\VoiceParams;
 use Seven\SyliusPlugin\Entity\Config;
 
 class VoiceController extends AbstractController {
     protected function buildParams(Config $cfg): VoiceParams {
-        $params = new VoiceParams;
+        $params = new VoiceParams('', '');
 
         return $params;
     }

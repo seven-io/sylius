@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
-use Sms77\Api\Params\SmsParams;
-use Sms77\Api\Params\VoiceParams;
+use Seven\Api\Resource\Sms\SmsParams;
+use Seven\Api\Resource\Voice\VoiceParams;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
@@ -205,7 +205,7 @@ class Config implements ResourceInterface, TranslatableInterface {
     }
 
     public function getSmsParams(): SmsParams {
-        return (new SmsParams)
+        return (new SmsParams('', ''))
             ->setDelay($this->getDelay())
             ->setFlash($this->getFlash())
             ->setForeignId($this->getForeignId())
@@ -218,7 +218,7 @@ class Config implements ResourceInterface, TranslatableInterface {
     }
 
     public function getVoiceParams(): VoiceParams {
-        return (new VoiceParams)
+        return (new VoiceParams('', ''))
             ->setFrom($this->getFrom())
             ;
     }

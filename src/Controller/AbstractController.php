@@ -3,9 +3,11 @@
 namespace Seven\SyliusPlugin\Controller;
 
 use FOS\RestBundle\View\View;
-use Sms77\Api\Client;
-use Sms77\Api\Params\SmsParams;
-use Sms77\Api\Params\VoiceParams;
+use Seven\Api\Client;
+use Seven\Api\Resource\Sms\SmsParams;
+use Seven\Api\Resource\Sms\SmsResource;
+use Seven\Api\Resource\Voice\VoiceParams;
+use Seven\Api\Resource\Voice\VoiceResource;
 use Seven\SyliusPlugin\Entity\AbstractMessage;
 use Seven\SyliusPlugin\Entity\Config;
 use Seven\SyliusPlugin\Entity\Message;
@@ -131,7 +133,9 @@ abstract class AbstractController extends ResourceController {
                 $params = clone $params;
                 $params->setText($text);
                 $params->setTo($to);
-                $responses[] = $client->{$isSMS ? 'smsJson' : 'voiceJson'}($params);
+                $responses[] = $isSMS
+                    ? (new SmsResource($client))->dispatch($params)
+                    : (new VoiceResource($client))->call($params);
             }
         }
 

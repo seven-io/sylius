@@ -2,7 +2,8 @@
 
 namespace Seven\SyliusPlugin\Api;
 
-use Sms77\Api\Client as ApiClient;
+use Seven\Api\Client as ApiClient;
+use Seven\Api\Resource\Sms\SmsResource;
 use Seven\SyliusPlugin\Entity\Config;
 use Seven\SyliusPlugin\Repository\ConfigRepository;
 use Sylius\Component\Core\Model\OrderInterface;
@@ -35,7 +36,7 @@ class Client {
             ->setText($text)
             ->setTo($to);
 
-        $client->sms($params);
+        (new SmsResource($client))->dispatch($params);
     }
 
     private function orderToPhone(OrderInterface $order): ?string {
