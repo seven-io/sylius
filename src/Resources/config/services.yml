@@ -28,7 +28,7 @@ services:
       - { name: form.type }
 
   Seven\SyliusPlugin\Form\Type\VoiceType:
-    arguments: [ '%seven.model.voice.class%', [ 'sylius' ] ]
+    arguments: [ 'Seven\SyliusPlugin\Entity\Voice', [ 'sylius' ] ]
     class: Seven\SyliusPlugin\Form\Type\VoiceType
     tags:
       - { name: form.type }
