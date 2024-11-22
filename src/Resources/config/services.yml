@@ -10,7 +10,7 @@ services:
       - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 
   Seven\SyliusPlugin\Form\Type\ConfigType:
-    arguments: [ '%seven.model.config.class%', [ 'sylius' ] ]
+    arguments: [ 'Seven\SyliusPlugin\Entity\Config', [ 'sylius' ] ]
     class: Seven\SyliusPlugin\Form\Type\ConfigType
     tags:
       - { name: form.type }
