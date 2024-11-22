@@ -9,13 +9,6 @@ services:
     tags:
       - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 
-  Seven\SyliusPlugin\EventListener\ConfigListener:
-    arguments: [ '@seven.manager.config' ]
-    class: Seven\SyliusPlugin\EventListener\ConfigListener
-    tags:
-      - { name: doctrine.event_listener, event: preUpdate }
-      - { name: doctrine.event_listener, event: prePersist }
-
   Seven\SyliusPlugin\Form\Type\ConfigType:
     arguments: [ '%seven.model.config.class%', [ 'sylius' ] ]
     class: Seven\SyliusPlugin\Form\Type\ConfigType

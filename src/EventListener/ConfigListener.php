@@ -4,21 +4,18 @@ namespace Seven\SyliusPlugin\EventListener;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Mapping as ORM;
 use Seven\SyliusPlugin\Entity\Config;
 use Seven\SyliusPlugin\Entity\ConfigTranslation;
 
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 final class ConfigListener {
-    /** @var EntityManager $configManager */
-    private $configManager;
-
-    public function __construct(EntityManager $configManager) {
-        $this->configManager = $configManager;
+    public function __construct(private EntityManager $configManager) {
     }
 
-    public function preUpdate(LifecycleEventArgs $event): void {
-        $this->handleEvent($event);
-    }
-
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
     private function handleEvent(LifecycleEventArgs $event): void {
         $config = $event->getEntity();
         if ($config instanceof ConfigTranslation) $config = $config->getTranslatable();
@@ -42,9 +39,5 @@ final class ConfigListener {
                 $this->configManager->flush();
             }
         }
-    }
-
-    public function prePersist(LifecycleEventArgs $event): void {
-        $this->handleEvent($event);
     }
 }
