@@ -22,7 +22,7 @@ services:
       - { name: form.type }
 
   Seven\SyliusPlugin\Form\Type\SmsType:
-    arguments: [ '%seven.model.sms.class%', [ 'sylius' ] ]
+    arguments: [ 'Seven\SyliusPlugin\Entity\Message', [ 'sylius' ] ]
     class: Seven\SyliusPlugin\Form\Type\SmsType
     tags:
       - { name: form.type }
