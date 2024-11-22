@@ -16,7 +16,7 @@ services:
       - { name: form.type }
 
   Seven\SyliusPlugin\Form\Type\ConfigTranslationType:
-    arguments: [ '%seven.model.config_translation.class%', [ 'sylius' ] ]
+    arguments: [ 'Seven\SyliusPlugin\Entity\ConfigTranslation', [ 'sylius' ] ]
     class: Seven\SyliusPlugin\Form\Type\ConfigTranslationType
     tags:
       - { name: form.type }
